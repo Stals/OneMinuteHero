@@ -1,6 +1,11 @@
 #pragma once
 
 #include "Constants.h"
+#include "Keyboard.h"
+
+#include "Board.h"
+
+
 
 class GameLayer : public cocos2d::CCLayer
 {
@@ -14,6 +19,14 @@ public:
     static cocos2d::CCScene* scene();
 
 private:
+	Keyboard* keyboard;
+	Board* board;
+
 	// implement the "static node()" method manually
     CREATE_FUNC(GameLayer);
+
+	void setupBackground();
+	void setupKeyboard();
+
+	void setupBoard();
 };
