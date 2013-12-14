@@ -93,16 +93,16 @@ void GameLayer::setupBoard()
 	 int changeX = 0;
 	 int changeY = 0;
 
-	if(keyboard->wasKeyPressed(InputKey::Key_Up)){
+	 if(keyboard->wasKeyPressed(InputKey::Key_Up) || keyboard->wasKeyPressed(InputKey::Key_W)){
 		changeY = 1;
 	}
-	else if(keyboard->wasKeyPressed(InputKey::Key_Left)){
+	else if(keyboard->wasKeyPressed(InputKey::Key_Left) || keyboard->wasKeyPressed(InputKey::Key_A)){
 		changeX = -1;
 	}
-	else if(keyboard->wasKeyPressed(InputKey::Key_Right)){
+	else if(keyboard->wasKeyPressed(InputKey::Key_Right) || keyboard->wasKeyPressed(InputKey::Key_D)){
 		changeX = 1;
 	}
-	else if(keyboard->wasKeyPressed(InputKey::Key_Down)){
+	else if(keyboard->wasKeyPressed(InputKey::Key_Down) || keyboard->wasKeyPressed(InputKey::Key_S)){
 		changeY = -1;
 	}
 
