@@ -29,7 +29,9 @@ protected:
 	int damage;
 
 	//ProgressBar* hpBar;
+	CCLabelTTF* hpChangeLabel;
 
 	void setupHPBar();
+	void setupLabel();
 };
 

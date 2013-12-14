@@ -11,6 +11,7 @@ Creature::Creature(const char* filename, int maxHp, int damage): tileX(0), tileY
 	this->setAnchorPoint(ccp(0,0));
 	addChild(sprite);
 	
+	setupLabel();
 	//setupHPBar();
 }
 
@@ -45,16 +46,14 @@ void Creature::substractHp(int hp, bool animated)
 {
 	this->hp -= hp;
 
-	CCLabelTTF* ttf1 = CCLabelTTF::create(StringExtension::toString(-1 * hp).c_str(), "fonts/Quicksand_Bold", 12);
-                                      //CCSizeMake(245, 32), kCCTextAlignmentCenter);
+	hpChangeLabel->setOpacity(255);
 
-	ttf1->setPositionX(2 + this->getContentSize().width/2);
-	this->addChild(ttf1);
+	hpChangeLabel->setString(StringExtension::toString(-1 * hp).c_str());
+	hpChangeLabel->setPosition(ccp(2 + this->getContentSize().width/2, 0));
 
-	ttf1->runAction(CCMoveBy::create(0.5f, ccp(0, -10)));
-	ttf1->runAction(CCFadeOut::create(0.5f));
+	hpChangeLabel->runAction(CCMoveBy::create(0.5f, ccp(0, -10)));
+	hpChangeLabel->runAction(CCFadeOut::create(0.5f));
 	//ttf1->runAction(CCSequence::create(CCMoveBy::create(0.5f, ccp(0, -10), );
-
 }
 
 void Creature::addHp(int hp, bool animated)
@@ -82,4 +81,12 @@ void Creature::setupHPBar()
 	
 	this->addChild(hpBar);
 	hpBar->setVisible(false);*/
+}
+
+void Creature::setupLabel()
+{
+	hpChangeLabel = CCLabelTTF::create("0", "fonts/Quicksand_Bold", 12);
+                                      //CCSizeMake(245, 32), kCCTextAlignmentCenter);
+	hpChangeLabel->setOpacity(0);
+	this->addChild(hpChangeLabel);
 }
