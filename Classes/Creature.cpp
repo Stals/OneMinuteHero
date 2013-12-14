@@ -1,6 +1,6 @@
 #include "Creature.h"
 
-Creature::Creature(int hp, int maxHp): tileX(0), tileY(0), hp(hp), maxHp(maxHp)
+Creature::Creature(int maxHp): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp)
 {
 	CCSprite::init();
 	autorelease();

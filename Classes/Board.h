@@ -17,7 +17,7 @@ public:
 
 private:
 	Player* player;
-	//std::vector<Monster*> monsters;
+	std::vector<Monster*> monsters;
 
 	// сколько тайлов в ширину
 	int tilesWidth;
@@ -25,7 +25,8 @@ private:
 	std::vector<std::vector<BoardTile*> > tiles;
 
 	void setupTiles(int width, int height);
-
+	void addMonsters();
 	
 	void setPosition(CCSprite* sprite, int tileX, int tileY);
+	bool isMonsterOn(int x, int y);
 };

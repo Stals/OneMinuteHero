@@ -73,7 +73,7 @@ void GameLayer::update(float delta )
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(0, 0);
+	player = new Player(100);
 }
 
 void GameLayer::setupBoard()

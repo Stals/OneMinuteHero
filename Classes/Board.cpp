@@ -12,6 +12,7 @@ Board::Board(int width, int height):tilesWidth(width), tilesHeight(height){
 	this->setContentSize(CCSize(width * OFFSET_X, height * OFFSET_Y));
 	this->setAnchorPoint(ccp(0,0));
 	setupTiles(width, height);	
+	addMonsters();
 }
 
 
@@ -39,6 +40,27 @@ void Board::setupTiles(int width, int height)
 		}	
 	}
 }
+
+
+void Board::addMonsters()
+{
+	for(int x = 0; x < tilesWidth; ++x){
+		for(int y = 0; y < tilesHeight; ++y){
+			if(tiles[x][y]->isWalkable()){
+				int r = rand() % 10;
+				if(r == 0){
+					Monster* monster = new Monster(10);
+					setPosition(monster, x, y);
+					monster->setTilePosition(x, y);
+					addChild(monster);
+					monsters.push_back(monster);
+				}
+			}
+		}
+	}
+}
+
+
 void Board::addPlayer(Player* player, int x, int y)
 {
 	this->player = player;
@@ -50,7 +72,7 @@ bool Board::movePlayerTo(int x, int y)
 {
 	if(x < 0 || x > tilesWidth-1) return false;
 	if(y < 0 || y > tilesHeight-1) return false;
-
+	if(isMonsterOn(x, y)) return false;
 
 	// TODO и там не монстров
 	if(tiles[x][y]->isWalkable()){
@@ -67,3 +89,14 @@ void Board::setPosition(CCSprite* sprite, int tileX, int tileY)
 	sprite->setPositionX(tileX * OFFSET_X);
 	sprite->setPositionY(tileY * OFFSET_Y);
 }
+
+bool Board::isMonsterOn(int x, int y)
+{
+	for(size_t i = 0; i < monsters.size(); ++i){
+		if((monsters[i]->getTileX() == x) && (monsters[i]->getTileY() == y)){
+			return true;
+		} 
+	}
+	return false;
+}
+
