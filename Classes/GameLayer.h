@@ -36,4 +36,5 @@ private:
 	void playerOnStairsCallback(CCObject* pSender);
 
 	void movePlayer(int x, int y);
+	void fightMonster(Monster* monster);
 };

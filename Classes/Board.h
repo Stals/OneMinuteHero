@@ -39,6 +39,8 @@ public:
 	bool movePlayerTo(int x, int y);
 	void setPlayerOnStairsCallback(const CallbackData& callbackData);
 
+	Monster* isMonsterOn(int x, int y);
+	void removeMonster(Monster* monster);
 private:
 	CallbackData stairsCallData;
 	TilePosition stairsPosition;
@@ -55,6 +57,5 @@ private:
 	void addStairs(int x, int y);
 
 	void setPosition(CCSprite* sprite, int tileX, int tileY);
-	bool isMonsterOn(int x, int y);
 	void checkPlayerOnStairs();
 };

@@ -2,6 +2,7 @@
 #include "Wall.h"
 #include "EmptyTile.h"
 #include "Stairs.h"
+#include <algorithm>
 
 #define OFFSET_X 31
 #define OFFSET_Y 30.7f
@@ -24,6 +25,8 @@ void Board::setPlayerOnStairsCallback(const CallbackData& callbackData)
 
 void Board::setupTiles(int width, int height)
 {
+	// TODO вынести создание комнат и тд в отдельный класс
+
 	tiles.resize(width);
 
 	for(int x = 0; x < width; ++x){
@@ -109,14 +112,20 @@ void Board::setPosition(CCSprite* sprite, int tileX, int tileY)
 	sprite->setPositionY(tileY * OFFSET_Y);
 }
 
-bool Board::isMonsterOn(int x, int y)
+Monster* Board::isMonsterOn(int x, int y)
 {
 	for(size_t i = 0; i < monsters.size(); ++i){
 		if((monsters[i]->getTileX() == x) && (monsters[i]->getTileY() == y)){
-			return true;
+			return monsters[i];
 		} 
 	}
 	return false;
+}
+
+void Board::removeMonster(Monster* monster)
+{
+	monsters.erase(std::remove(monsters.begin(), monsters.end(), monster), monsters.end());
+	this->removeChild(monster, true);
 }
 
 void Board::checkPlayerOnStairs()

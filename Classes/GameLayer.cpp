@@ -112,14 +112,40 @@ void GameLayer::createBoard()
 		changeY = -1;
 	}
 
-	movePlayer(player->getTileX() + changeX, player->getTileY() + changeY);
+	const int x = player->getTileX() + changeX;
+	const int y = player->getTileY() + changeY;
+
+	Monster* monster = board->isMonsterOn(x, y);
+	if(monster){
+		fightMonster(monster);
+	}else{
+		movePlayer(player->getTileX() + changeX, player->getTileY() + changeY);
+	}	
  }
 
  void GameLayer::movePlayer(int x, int y)
  {
-	 // TODO check if monster there - fight instead
-
 	 board->movePlayerTo(x, y);
+ }
+
+ void GameLayer::fightMonster(Monster* monster)
+ {
+	 monster->substractHp(player->getDamage());
+	 if(!monster->isDead()){
+		 // TODO можно пройтись по всем монстрам вокруг игрока а не только тот которого ты трогаеш
+
+		player->substractHp(monster->getDamage());
+
+		if(player->isDead()){
+			// show dead screen
+		}
+
+	 }else{
+		const int newX = monster->getTileX();
+		const int newY = monster->getTileY();		
+		board->removeMonster(monster);
+		movePlayer(newX, newY);
+	 }
  }
 
  void GameLayer::playerOnStairsCallback(CCObject* pSender)
