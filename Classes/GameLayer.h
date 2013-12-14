@@ -29,7 +29,7 @@ private:
 	void setupBackground();
 	void setupKeyboard();
 	void setupPlayer();
-	void setupBoard();
+	void createBoard();
 
 	void processKeyboardInputs();
 

@@ -34,14 +34,15 @@ bool GameLayer::init()
     {
         return false;
     }
-    
+    board = NULL;
+
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
 	setupKeyboard();
 	setupBackground();
 	setupPlayer();
-	setupBoard();
+	createBoard();
 
 	setTouchEnabled(true);
     scheduleUpdate();
@@ -76,8 +77,12 @@ void GameLayer::setupPlayer()
 	player = new Player(100);
 }
 
-void GameLayer::setupBoard()
+void GameLayer::createBoard()
 {
+	if(board){
+		this->removeChild(board);
+	}
+
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
 	board = new Board(15, 20);
@@ -112,5 +117,5 @@ void GameLayer::setupBoard()
 
  void GameLayer::playerOnStairsCallback(CCObject* pSender)
  {
-	 int i = 0;
+	 createBoard();
  }

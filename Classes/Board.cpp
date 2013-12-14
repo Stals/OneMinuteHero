@@ -83,6 +83,7 @@ void Board::addPlayer(Player* player, int x, int y)
 	this->player = player;
 	setPosition(player, x, y);
 	addChild(player);
+	player->setTilePosition(x, y);
 }
 
 bool Board::movePlayerTo(int x, int y)

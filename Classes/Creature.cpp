@@ -3,7 +3,7 @@
 Creature::Creature(int maxHp): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp)
 {
 	CCSprite::init();
-	autorelease();
+	//autorelease();
 }
 
 void Creature::setTileX(int x)
