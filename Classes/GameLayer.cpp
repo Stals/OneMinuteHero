@@ -47,7 +47,7 @@ bool GameLayer::init()
 
 	setTouchEnabled(true);
     scheduleUpdate();
-
+	
 	return true;
 }
 
@@ -134,9 +134,9 @@ void GameLayer::createBoard()
  {
 	 monster->substractHp(player->getDamage());
 	 if(!monster->isDead()){
+		 // show animation of player attacking enemy		 
 		 // TODO можно пройтись по всем монстрам вокруг игрока а не только тот которого ты трогаеш
-
-		player->substractHp(monster->getDamage());
+		 player->substractHp(monster->getDamage());
 
 		if(player->isDead()){
 			// show dead screen

@@ -1,4 +1,5 @@
 #include "Creature.h"
+#include "StringExtension.h"
 
 Creature::Creature(const char* filename, int maxHp, int damage): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp), damage(damage)
 {
@@ -43,6 +44,17 @@ int Creature::getTileY()
 void Creature::substractHp(int hp, bool animated)
 {
 	this->hp -= hp;
+
+	CCLabelTTF* ttf1 = CCLabelTTF::create(StringExtension::toString(-1 * hp).c_str(), "fonts/Quicksand_Bold", 12);
+                                      //CCSizeMake(245, 32), kCCTextAlignmentCenter);
+
+	ttf1->setPositionX(2 + this->getContentSize().width/2);
+	this->addChild(ttf1);
+
+	ttf1->runAction(CCMoveBy::create(0.5f, ccp(0, -10)));
+	ttf1->runAction(CCFadeOut::create(0.5f));
+	//ttf1->runAction(CCSequence::create(CCMoveBy::create(0.5f, ccp(0, -10), );
+
 }
 
 void Creature::addHp(int hp, bool animated)
