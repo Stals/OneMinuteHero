@@ -46,13 +46,21 @@ void Creature::substractHp(int hp, bool animated)
 {
 	this->hp -= hp;
 
+
+	CCLabelTTF* hpChangeLabel = CCLabelTTF::create("0", "fonts/Quicksand_Bold", 12);
+	addChild(hpChangeLabel);
+
 	hpChangeLabel->setOpacity(255);
 
 	hpChangeLabel->setString(StringExtension::toString(-1 * hp).c_str());
 	hpChangeLabel->setPosition(ccp(2 + this->getContentSize().width/2, 0));
 
 	hpChangeLabel->runAction(CCMoveBy::create(0.5f, ccp(0, -10)));
-	hpChangeLabel->runAction(CCFadeOut::create(0.5f));
+	CCSequence* seq = CCSequence::create(CCFadeOut::create(0.5f),
+										 CCCallFunc::create( hpChangeLabel, callfunc_selector(CCSprite::removeFromParent)),
+										 NULL);
+	hpChangeLabel->runAction(seq);
+
 	//ttf1->runAction(CCSequence::create(CCMoveBy::create(0.5f, ccp(0, -10), );
 }
 
@@ -85,8 +93,8 @@ void Creature::setupHPBar()
 
 void Creature::setupLabel()
 {
-	hpChangeLabel = CCLabelTTF::create("0", "fonts/Quicksand_Bold", 12);
+	/*hpChangeLabel = CCLabelTTF::create("0", "fonts/Quicksand_Bold", 12);
                                       //CCSizeMake(245, 32), kCCTextAlignmentCenter);
 	hpChangeLabel->setOpacity(0);
-	this->addChild(hpChangeLabel);
+	this->addChild(hpChangeLabel);*/
 }
