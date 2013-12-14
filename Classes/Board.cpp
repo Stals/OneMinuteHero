@@ -23,11 +23,19 @@ void Board::setupTiles(int width, int height)
 		tiles[x].resize(height);
 		for(int y = 0; y < height; ++y){
 			
-			BoardTile* tile = new EmptyTile;
-			tiles[x][y] = tile;
-
-			setPosition(tile, x, y);
-			addChild(tile);
+			int r = rand() % 5;
+			
+			if(r == 0){
+				BoardTile* tile = new Wall;
+				tiles[x][y] = tile;
+				setPosition(tile, x, y);
+				addChild(tile);
+			}else{
+				BoardTile* tile = new EmptyTile;
+				tiles[x][y] = tile;
+				setPosition(tile, x, y);
+				addChild(tile);
+			}
 		}	
 	}
 }
