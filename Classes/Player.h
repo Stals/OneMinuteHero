@@ -4,5 +4,5 @@
 
 class Player : public Creature{
 public:
-	Player(int maxHp);
+	Player(int maxHp, int damage);
 };

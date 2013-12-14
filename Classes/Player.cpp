@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(int maxHp):Creature(maxHp)
+Player::Player(int maxHp, int damage):Creature(maxHp, damage)
 {
 	CCSprite* sprite = CCSprite::create("hero.png");
 	this->setContentSize(sprite->getContentSize());

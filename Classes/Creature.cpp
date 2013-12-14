@@ -1,6 +1,6 @@
 #include "Creature.h"
 
-Creature::Creature(int maxHp): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp)
+Creature::Creature(int maxHp, int damage): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp), damage(damage)
 {
 	CCSprite::init();
 	//autorelease();
@@ -31,3 +31,28 @@ int Creature::getTileY()
 {
 	return tileY;
 }
+
+
+void Creature::substractHp(int hp, bool animated)
+{
+	this->hp -= hp;
+}
+
+void Creature::addHp(int hp, bool animated)
+{
+	if(this->hp + hp > this->maxHp){
+		this->hp = this->maxHp;
+	}else{
+		this->hp += hp;
+	}
+}
+
+int Creature::getDamage()
+{
+	return damage;
+}
+
+bool Creature::isDead(){
+	return hp <= 0;
+}
+

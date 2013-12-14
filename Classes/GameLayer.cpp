@@ -74,7 +74,7 @@ void GameLayer::update(float delta )
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(100);
+	player = new Player(100, 7);
 }
 
 void GameLayer::createBoard()
@@ -112,7 +112,14 @@ void GameLayer::createBoard()
 		changeY = -1;
 	}
 
-	board->movePlayerTo(player->getTileX() + changeX, player->getTileY() + changeY);
+	movePlayer(player->getTileX() + changeX, player->getTileY() + changeY);
+ }
+
+ void GameLayer::movePlayer(int x, int y)
+ {
+	 // TODO check if monster there - fight instead
+
+	 board->movePlayerTo(x, y);
  }
 
  void GameLayer::playerOnStairsCallback(CCObject* pSender)

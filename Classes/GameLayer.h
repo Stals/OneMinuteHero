@@ -34,4 +34,6 @@ private:
 	void processKeyboardInputs();
 
 	void playerOnStairsCallback(CCObject* pSender);
+
+	void movePlayer(int x, int y);
 };
