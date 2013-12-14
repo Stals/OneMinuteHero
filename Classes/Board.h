@@ -15,4 +15,6 @@ private:
 	std::vector<std::vector<Entity*> > tiles;
 
 	void setupTiles(int width, int height);
+
+	void addPlayer(int x, int y);
 };
