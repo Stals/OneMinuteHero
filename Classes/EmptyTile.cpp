@@ -1,4 +1,4 @@
 #include "EmptyTile.h"
 
-EmptyTile::EmptyTile():BoardTile(false){
+EmptyTile::EmptyTile():BoardTile(true){
 }

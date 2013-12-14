@@ -40,10 +40,11 @@ bool GameLayer::init()
 
 	setupKeyboard();
 	setupBackground();
+	setupPlayer();
 	setupBoard();
 
 	setTouchEnabled(true);
-    //scheduleUpdate();
+    scheduleUpdate();
 
 	return true;
 }
@@ -64,11 +65,16 @@ void GameLayer::setupKeyboard()
 }
 
 
-/*
+
 void GameLayer::update(float delta )
 {
-}*/
+	processKeyboardInputs();
+}
 
+void GameLayer::setupPlayer()
+{
+	player = new Player(0, 0);
+}
 
 void GameLayer::setupBoard()
 {
@@ -79,5 +85,26 @@ void GameLayer::setupBoard()
 	board->setPositionY(BOARD_OFFSET_Y);
 	
 	this->addChild(board, zBoard);
-
+	board->addPlayer(player, 0, 0);
 }
+
+ void GameLayer::processKeyboardInputs()
+ {
+	 int changeX = 0;
+	 int changeY = 0;
+
+	if(keyboard->wasKeyPressed(InputKey::Key_Up)){
+		changeY = 1;
+	}
+	else if(keyboard->wasKeyPressed(InputKey::Key_Left)){
+		changeX = -1;
+	}
+	else if(keyboard->wasKeyPressed(InputKey::Key_Right)){
+		changeX = 1;
+	}
+	else if(keyboard->wasKeyPressed(InputKey::Key_Down)){
+		changeY = -1;
+	}
+
+	board->movePlayerTo(player->getTileX() + changeX, player->getTileY() + changeY);
+ }

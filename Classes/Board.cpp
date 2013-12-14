@@ -1,7 +1,6 @@
 #include "Board.h"
 #include "Wall.h"
 #include "EmptyTile.h"
-#include "Player.h"
 
 #define OFFSET_X 31
 #define OFFSET_Y 30.7f
@@ -13,7 +12,6 @@ Board::Board(int width, int height):tilesWidth(width), tilesHeight(height){
 	this->setContentSize(CCSize(width * OFFSET_X, height * OFFSET_Y));
 	this->setAnchorPoint(ccp(0,0));
 	setupTiles(width, height);	
-	addPlayer(2,5);
 }
 
 
@@ -28,17 +26,36 @@ void Board::setupTiles(int width, int height)
 			BoardTile* tile = new EmptyTile;
 			tiles[x][y] = tile;
 
-			//tile->setAnchorPoint(ccp(0, 0));
-			tile->setPositionX(x * OFFSET_X);
-			tile->setPositionY(y * OFFSET_Y);
+			setPosition(tile, x, y);
 			addChild(tile);
 		}	
 	}
 }
-
-void Board::addPlayer(int x, int y)
+void Board::addPlayer(Player* player, int x, int y)
 {
-	Player* player = new Player(0, 0);
-	player->setPosition(ccp(x * OFFSET_X, y * OFFSET_Y));
+	this->player = player;
+	setPosition(player, x, y);
 	addChild(player);
+}
+
+bool Board::movePlayerTo(int x, int y)
+{
+	if(x < 0 || x > tilesWidth-1) return false;
+	if(y < 0 || y > tilesHeight-1) return false;
+
+
+	// TODO и там не монстров
+	if(tiles[x][y]->isWalkable()){
+		setPosition(player, x, y);
+		player->setTilePosition(x, y);
+		return true;
+	}
+
+	return false;
+}
+
+void Board::setPosition(CCSprite* sprite, int tileX, int tileY)
+{
+	sprite->setPositionX(tileX * OFFSET_X);
+	sprite->setPositionY(tileY * OFFSET_Y);
 }
