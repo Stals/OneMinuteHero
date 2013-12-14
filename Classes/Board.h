@@ -26,7 +26,8 @@ private:
 
 	void setupTiles(int width, int height);
 	void addMonsters();
-	
+	void addStairs(int x, int y);
+
 	void setPosition(CCSprite* sprite, int tileX, int tileY);
 	bool isMonsterOn(int x, int y);
 };

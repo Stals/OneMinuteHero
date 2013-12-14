@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "Wall.h"
 #include "EmptyTile.h"
+#include "Stairs.h"
 
 #define OFFSET_X 31
 #define OFFSET_Y 30.7f
@@ -13,6 +14,7 @@ Board::Board(int width, int height):tilesWidth(width), tilesHeight(height){
 	this->setAnchorPoint(ccp(0,0));
 	setupTiles(width, height);	
 	addMonsters();
+	addStairs(rand()%width, rand()%height);
 }
 
 
@@ -60,6 +62,16 @@ void Board::addMonsters()
 	}
 }
 
+void Board::addStairs(int x, int y)
+{
+	BoardTile* oldTile = tiles[x][y];
+	removeChild(oldTile, true);
+	Stairs* stairs = new Stairs;
+	tiles[x][y] = stairs;
+	setPosition(stairs, x, y);
+	addChild(stairs);
+	// TODO если встал на них - тогда нужно вызывать метод который сюда передадут - так как делаются кокосовский колбэки - при нажатии кнопки например
+}
 
 void Board::addPlayer(Player* player, int x, int y)
 {
