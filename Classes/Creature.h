@@ -1,7 +1,7 @@
-#include "Entity.h"
+#include "Constants.h"
 
 // Added HP/Stats and HP bar sprite
-class Creature : public Entity{
+class Creature : public CCSprite{
 public:
 	Creature(int hp, int maxHp);
 

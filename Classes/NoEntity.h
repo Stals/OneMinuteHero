@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.h"
+#include "Tile.h"
 
-class NoEntity : public Entity{
+class NoEntity : public BoardTile{
 public:
 	NoEntity();
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.h"
+#include "Tile.h"
 
-class Wall : public Entity{
+class Wall : public BoardTile{
 public:
 	Wall();
 };

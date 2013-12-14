@@ -1,9 +1,10 @@
 #pragma once
 #include "Constants.h"
 
-class Entity : public cocos2d::CCSprite{
+
+class BoardTile : public cocos2d::CCSprite{
 public:
-	Entity(bool walkable);
+	BoardTile(bool walkable);
 
 	bool isWalkable();
 

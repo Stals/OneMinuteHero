@@ -13,7 +13,7 @@ Board::Board(int width, int height):tilesWidth(width), tilesHeight(height){
 	this->setContentSize(CCSize(width * OFFSET_X, height * OFFSET_Y));
 	this->setAnchorPoint(ccp(0,0));
 	setupTiles(width, height);	
-	addPlayer(0,0);
+	addPlayer(2,5);
 }
 
 
@@ -25,7 +25,7 @@ void Board::setupTiles(int width, int height)
 		tiles[x].resize(height);
 		for(int y = 0; y < height; ++y){
 			
-			Entity* tile = new NoEntity;
+			BoardTile* tile = new NoEntity;
 			tiles[x][y] = tile;
 
 			//tile->setAnchorPoint(ccp(0, 0));
@@ -38,12 +38,7 @@ void Board::setupTiles(int width, int height)
 
 void Board::addPlayer(int x, int y)
 {
-	CCSprite* oldSprite = tiles[x][y];
-	CCPoint position = oldSprite->getPosition();
-	this->reorderChild(oldSprite, true);
-	
 	Player* player = new Player(0, 0);
-	player->setPosition(position);
-	tiles[x][y] = player;
+	player->setPosition(ccp(x * OFFSET_X, y * OFFSET_Y));
 	addChild(player);
 }

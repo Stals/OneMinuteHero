@@ -1,6 +1,8 @@
 #include "Creature.h"
 
-Creature::Creature(int hp, int maxHp):Entity(false), hp(hp), maxHp(maxHp)
+Creature::Creature(int hp, int maxHp): hp(hp), maxHp(maxHp)
 {
+	CCSprite::init();
+	autorelease();
 }
 
