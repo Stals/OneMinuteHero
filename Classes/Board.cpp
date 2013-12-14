@@ -1,6 +1,6 @@
 #include "Board.h"
 #include "Wall.h"
-#include "NoEntity.h"
+#include "EmptyTile.h"
 #include "Player.h"
 
 #define OFFSET_X 31
@@ -25,7 +25,7 @@ void Board::setupTiles(int width, int height)
 		tiles[x].resize(height);
 		for(int y = 0; y < height; ++y){
 			
-			BoardTile* tile = new NoEntity;
+			BoardTile* tile = new EmptyTile;
 			tiles[x][y] = tile;
 
 			//tile->setAnchorPoint(ccp(0, 0));
