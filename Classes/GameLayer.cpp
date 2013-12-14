@@ -90,7 +90,7 @@ void GameLayer::createBoard()
 	board->setPositionY(BOARD_OFFSET_Y);
 	
 	this->addChild(board, zBoard);
-	board->addPlayer(player, 0, 0);
+	board->addPlayer(player, player->getTileX(), player->getTileY());
 	board->setPlayerOnStairsCallback(CallbackData(this, menu_selector(GameLayer::playerOnStairsCallback)));
 }
 
