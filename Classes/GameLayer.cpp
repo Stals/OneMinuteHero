@@ -6,6 +6,7 @@ USING_NS_CC;
 #define BOARD_OFFSET_Y HALF_SPRITE_SIZE + 14
 
 GameLayer::~GameLayer(){
+	player->release();
 }
 
 
@@ -75,6 +76,7 @@ void GameLayer::update(float delta )
 void GameLayer::setupPlayer()
 {
 	player = new Player(100, 7);
+	player->retain();
 }
 
 void GameLayer::createBoard()
@@ -141,6 +143,8 @@ void GameLayer::createBoard()
 		}
 
 	 }else{
+		// TODO give EXP
+
 		const int newX = monster->getTileX();
 		const int newY = monster->getTileY();		
 		board->removeMonster(monster);

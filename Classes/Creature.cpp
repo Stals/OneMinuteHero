@@ -1,9 +1,16 @@
 #include "Creature.h"
 
-Creature::Creature(int maxHp, int damage): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp), damage(damage)
+Creature::Creature(const char* filename, int maxHp, int damage): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp), damage(damage)
 {
 	CCSprite::init();
 	//autorelease();
+
+	CCSprite* sprite = CCSprite::create(filename);
+	this->setContentSize(sprite->getContentSize());
+	this->setAnchorPoint(ccp(0,0));
+	addChild(sprite);
+	
+	//setupHPBar();
 }
 
 void Creature::setTileX(int x)
@@ -56,3 +63,11 @@ bool Creature::isDead(){
 	return hp <= 0;
 }
 
+void Creature::setupHPBar()
+{
+	/*hpBar = new ProgressBar(CCSprite::create("hpBarEmpty.png"), CCSprite::create("hpBarFull.png"));
+	hpBar->setPosition(ccp(getContentSize().width/2, 2 + getContentSize().height/2));
+	
+	this->addChild(hpBar);
+	hpBar->setVisible(false);*/
+}
