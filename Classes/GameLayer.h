@@ -32,4 +32,6 @@ private:
 	void setupBoard();
 
 	void processKeyboardInputs();
+
+	void playerOnStairsCallback(CCObject* pSender);
 };

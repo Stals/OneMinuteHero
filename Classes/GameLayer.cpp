@@ -86,6 +86,7 @@ void GameLayer::setupBoard()
 	
 	this->addChild(board, zBoard);
 	board->addPlayer(player, 0, 0);
+	board->setPlayerOnStairsCallback(CallbackData(this, menu_selector(GameLayer::playerOnStairsCallback)));
 }
 
  void GameLayer::processKeyboardInputs()
@@ -107,4 +108,9 @@ void GameLayer::setupBoard()
 	}
 
 	board->movePlayerTo(player->getTileX() + changeX, player->getTileY() + changeY);
+ }
+
+ void GameLayer::playerOnStairsCallback(CCObject* pSender)
+ {
+	 int i = 0;
  }

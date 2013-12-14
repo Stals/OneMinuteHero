@@ -6,6 +6,29 @@
 #include "Player.h"
 #include "Monster.h"
 
+struct CallbackData{
+	CallbackData(){}
+	CallbackData(CCObject *target, SEL_MenuHandler callback):target(target), callback(callback){}
+
+	CCObject *target;
+	SEL_MenuHandler callback;
+
+	void call(){
+		if (target && callback){
+			(target->*callback)(NULL);
+		}
+	}
+
+};
+
+struct TilePosition{
+	TilePosition():x(0), y(0){}
+	TilePosition(int x, int y):x(x), y(y){}
+
+	int x;
+	int y;
+};
+
 // TODO отдаем в board точки начала и конца? (и в начале он спавнит игрока)
 class Board : public CCSprite{
 public:
@@ -14,8 +37,11 @@ public:
 
 	// returns true if moved (was walkable, and no monsters there)
 	bool movePlayerTo(int x, int y);
+	void setPlayerOnStairsCallback(const CallbackData& callbackData);
 
 private:
+	CallbackData stairsCallData;
+	TilePosition stairsPosition;
 	Player* player;
 	std::vector<Monster*> monsters;
 
@@ -30,4 +56,5 @@ private:
 
 	void setPosition(CCSprite* sprite, int tileX, int tileY);
 	bool isMonsterOn(int x, int y);
+	void checkPlayerOnStairs();
 };

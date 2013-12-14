@@ -17,6 +17,10 @@ Board::Board(int width, int height):tilesWidth(width), tilesHeight(height){
 	addStairs(rand()%width, rand()%height);
 }
 
+void Board::setPlayerOnStairsCallback(const CallbackData& callbackData)
+{
+	stairsCallData = callbackData;
+}
 
 void Board::setupTiles(int width, int height)
 {
@@ -70,6 +74,7 @@ void Board::addStairs(int x, int y)
 	tiles[x][y] = stairs;
 	setPosition(stairs, x, y);
 	addChild(stairs);
+	stairsPosition = TilePosition(x, y);
 	// TODO если встал на них - тогда нужно вызывать метод который сюда передадут - так как делаются кокосовский колбэки - при нажатии кнопки например
 }
 
@@ -90,6 +95,7 @@ bool Board::movePlayerTo(int x, int y)
 	if(tiles[x][y]->isWalkable()){
 		setPosition(player, x, y);
 		player->setTilePosition(x, y);
+		checkPlayerOnStairs();
 		return true;
 	}
 
@@ -112,3 +118,9 @@ bool Board::isMonsterOn(int x, int y)
 	return false;
 }
 
+void Board::checkPlayerOnStairs()
+{
+	if((player->getTileX() == this->stairsPosition.x) && (player->getTileY() == this->stairsPosition.y)){
+		stairsCallData.call();
+	}
+}
