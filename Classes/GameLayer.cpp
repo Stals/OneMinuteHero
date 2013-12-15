@@ -6,6 +6,7 @@ USING_NS_CC;
 #define BOARD_OFFSET_Y HALF_SPRITE_SIZE*5 + 14
 
 #define FIRE_AOE_DAMAGE 9
+#define HEAL_SKILL_AMOUNT 25
 
 GameLayer::~GameLayer(){
 	player->release();
@@ -202,6 +203,8 @@ void GameLayer::setupSkillButton()
  {
 	 if(playerSkill == SkillType::Fire){
 		 useFireSkill();
+	 }else if(playerSkill == SkillType::Heal){
+		 useHealSkill();
 	 }
  }
 
@@ -238,4 +241,9 @@ void GameLayer::setupSkillButton()
 		}
 	}
 
+ }
+
+ void GameLayer::useHealSkill()
+ {
+	 player->addHp(HEAL_SKILL_AMOUNT, true);
  }

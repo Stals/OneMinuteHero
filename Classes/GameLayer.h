@@ -44,4 +44,5 @@ private:
 
 	void useSkill(CCObject* pSender);
 	void useFireSkill();
+	void useHealSkill();
 };
