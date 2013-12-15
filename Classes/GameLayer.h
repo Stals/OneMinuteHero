@@ -43,4 +43,5 @@ private:
 	void fightMonster(Monster* monster);
 
 	void useSkill(CCObject* pSender);
+	void useFireSkill();
 };

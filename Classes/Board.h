@@ -41,6 +41,10 @@ public:
 
 	Monster* isMonsterOn(int x, int y);
 	void removeMonster(Monster* monster);
+
+	int getTileWidth();
+	int getTileHeight();
+
 private:
 	CallbackData stairsCallData;
 	TilePosition stairsPosition;

@@ -5,6 +5,8 @@ USING_NS_CC;
 #define BOARD_OFFSET_X HALF_SPRITE_SIZE + 10
 #define BOARD_OFFSET_Y HALF_SPRITE_SIZE*5 + 14
 
+#define FIRE_AOE_DAMAGE 9
+
 GameLayer::~GameLayer(){
 	player->release();
 }
@@ -131,6 +133,12 @@ void GameLayer::setupSkillButton()
 
  void GameLayer::processKeyboardInputs()
  {
+	 if(keyboard->wasKeyPressed(InputKey::Key_Space)){
+		useSkill(this);
+		return;
+	 }
+
+
 	 int changeX = 0;
 	 int changeY = 0;
 
@@ -192,5 +200,42 @@ void GameLayer::setupSkillButton()
 
  void GameLayer::useSkill(CCObject* pSender)
  {
-	 int i = 0;
+	 if(playerSkill == SkillType::Fire){
+		 useFireSkill();
+	 }
+ }
+
+ void GameLayer::useFireSkill()
+ {
+	 CCSprite* fireAOE = CCSprite::create("fireAOE.png");
+	fireAOE->setOpacity(200);
+	fireAOE->setPosition(player->getPosition());
+	board->addChild(fireAOE, zAOE);
+
+	CCSequence* seq = CCSequence::create(CCFadeOut::create(0.5f),
+									CCCallFunc::create( fireAOE, callfunc_selector(CCSprite::removeFromParent)),
+									NULL);
+	fireAOE->runAction(seq);
+
+
+	const int startX = std::max(0, player->getTileX() - 1);
+	const int endX = std::min(board->getTileWidth()-1, player->getTileX() + 1);
+
+	const int endY = std::min(board->getTileHeight()-1, player->getTileY() + 1);
+	const int startY = std::max(0, player->getTileY() - 1);
+
+		
+
+	for(int x = startX; x <= endX; ++x){
+		for(int y = startY; y <= endY; ++y){
+			Monster* monster = board->isMonsterOn(x, y);
+			if(monster){
+				monster->substractHp(FIRE_AOE_DAMAGE, true);
+				if(monster->isDead()){
+					board->removeMonster(monster);
+				}
+			}
+		}
+	}
+
  }

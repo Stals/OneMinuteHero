@@ -8,6 +8,7 @@ using namespace cocos2d;
 enum zOrder{
 	zBackground,
 	zBoard,
+	zAOE,
 	zCreature,
 	zWall
 };

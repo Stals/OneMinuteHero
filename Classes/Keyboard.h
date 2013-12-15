@@ -10,7 +10,9 @@ enum InputKey{
 	Key_A = s3eKeyA,
 	Key_W = s3eKeyW,
 	Key_D = s3eKeyD,
-	Key_S = s3eKeyS
+	Key_S = s3eKeyS,
+
+	Key_Space = s3eKeySpace
 };
 
 class Keyboard{

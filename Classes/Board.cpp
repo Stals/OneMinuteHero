@@ -61,7 +61,7 @@ void Board::addMonsters()
 					Monster* monster = new Monster(10, 5);
 					setPosition(monster, x, y);
 					monster->setTilePosition(x, y);
-					addChild(monster);
+					addChild(monster, zCreature);
 					monsters.push_back(monster);
 				}
 			}
@@ -85,7 +85,7 @@ void Board::addPlayer(Player* player, int x, int y)
 {
 	this->player = player;
 	setPosition(player, x, y);
-	addChild(player);
+	addChild(player, zCreature);
 	player->setTilePosition(x, y);
 }
 
@@ -133,4 +133,14 @@ void Board::checkPlayerOnStairs()
 	if((player->getTileX() == this->stairsPosition.x) && (player->getTileY() == this->stairsPosition.y)){
 		stairsCallData.call();
 	}
+}
+
+int Board::getTileWidth()
+{
+	return tilesWidth;
+}
+
+int Board::getTileHeight()
+{
+	return tilesHeight;
 }
