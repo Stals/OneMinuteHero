@@ -95,7 +95,7 @@ void GameLayer::update(float delta )
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(100, 4);
+	player = new Player(5, 4);
 	player->retain();
 }
 
@@ -373,7 +373,7 @@ void GameLayer::updatePlayerExp()
 
 void GameLayer::showGameOver(CCObject* pSender)
 {
-	CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene(player->getScore()));
+	this->addChild(new GameOverScreen(player->getScore()), zGameover);
 }
 
 void GameLayer::enableSkill()

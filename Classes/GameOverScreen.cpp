@@ -3,10 +3,19 @@
 #include "TitleScreen.h"
 #include "StringExtension.h"
 
-GameOverScreen::~GameOverScreen()
+GameOverScreen::GameOverScreen(long long score)
 {
+	setupBackground();
+	keyboard = new Keyboard;
+	setScore(score);
+	this->scheduleUpdate();
 }
 
+GameOverScreen::~GameOverScreen()
+{
+
+}
+/*
 CCScene* GameOverScreen::scene(long long score)
 {
     // 'scene' is an autorelease object
@@ -21,9 +30,9 @@ CCScene* GameOverScreen::scene(long long score)
 
     // return the scene
     return scene;
-}
+}*/
 
-
+/*
 bool GameOverScreen::init()
 {
     //////////////////////////////
@@ -45,7 +54,7 @@ bool GameOverScreen::init()
 	this->scheduleUpdate();
 	
 	return true;
-}
+}*/
 
 void GameOverScreen::setScore(long long score)
 {
@@ -69,7 +78,7 @@ void GameOverScreen::setupLabel()
 	label->setColor(ccc3(250, 250, 250));
 	addChild(label);
 
-	label->setPosition(ccp(this->getContentSize().width/2, 422));
+	label->setPosition(ccp(240, 422));
 
 }
 
@@ -87,7 +96,7 @@ bool GameOverScreen::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 }
 
 void GameOverScreen::onEnter(){
-        CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+        CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,-250, true);
         CCLayer::onEnter();
 }
 void GameOverScreen::onExit(){

@@ -11,7 +11,8 @@ enum zOrder{
 	zAOE,
 	zCreature,
 	zWall,
-	zTutorial
+	zTutorial,
+	zGameover
 };
 
 enum SkillType{
