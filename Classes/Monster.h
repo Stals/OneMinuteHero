@@ -4,7 +4,7 @@
 
 class Monster : public Creature{
 public:
-	Monster(int maxHp, int damage);
+	Monster(int maxHp, int damage, int level);
 
 	int getRewardExp();
 };

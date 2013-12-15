@@ -45,6 +45,7 @@ bool GameLayer::init()
         return false;
     }
     board = NULL;
+	floor = 1;
 
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
@@ -98,13 +99,14 @@ void GameLayer::setupPlayer()
 void GameLayer::createBoard()
 {
 	if(board){
+		++floor;
 		this->removeChild(board);
 		timer->addSeconds(SECONDS_PER_FLOOR);
 	}
 
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
-	board = new Board(15, 18);
+	board = new Board(15, 18, floor);
 	board->setPositionX(BOARD_OFFSET_X);
 	board->setPositionY(BOARD_OFFSET_Y);
 	

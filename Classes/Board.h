@@ -32,7 +32,7 @@ struct TilePosition{
 // TODO отдаем в board точки начала и конца? (и в начале он спавнит игрока)
 class Board : public CCSprite{
 public:
-	Board(int width, int height);
+	Board(int width, int height, int floorNumber);
 	void addPlayer(Player* player, int x, int y);
 
 	// returns true if moved (was walkable, and no monsters there)
@@ -57,7 +57,7 @@ private:
 	std::vector<std::vector<BoardTile*> > tiles;
 
 	void setupTiles(int width, int height);
-	void addMonsters();
+	void addMonsters(int floorNumber);
 	void addStairs(int x, int y);
 
 	void setPosition(CCSprite* sprite, int tileX, int tileY);

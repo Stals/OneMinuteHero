@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "StringExtension.h"
 
-Player::Player(int maxHp, int damage):Creature("hero.png", maxHp, damage)
+Player::Player(int maxHp, int damage):Creature("hero.png", maxHp, damage, 1)
 {
 	score = 0;
 	exp = 0;

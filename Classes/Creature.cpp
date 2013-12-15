@@ -1,10 +1,9 @@
 #include "Creature.h"
 #include "StringExtension.h"
 
-Creature::Creature(const char* filename, int maxHp, int damage): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp), damage(damage)
+Creature::Creature(const char* filename, int maxHp, int damage, int level): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp), damage(damage), level(level)
 {
 	CCSprite::init();
-	level = 1;
 
 	hp = getMaxHP();
 

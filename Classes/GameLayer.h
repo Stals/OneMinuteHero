@@ -22,6 +22,8 @@ public:
 	void setSkill(SkillType skillType);
 
 private:
+	int floor;
+
 	Keyboard* keyboard;
 	Board* board;
 	Player* player;

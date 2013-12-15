@@ -5,7 +5,7 @@
 // Added HP/Stats and HP bar sprite
 class Creature : public CCSprite{
 public:
-	Creature(const char* fileName, int maxHp, int damage);
+	Creature(const char* fileName, int maxHp, int damage, int level);
 	void setTileX(int x);
 	void setTileY(int y);
 	void setTilePosition(int x, int y);

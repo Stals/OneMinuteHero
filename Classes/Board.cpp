@@ -8,14 +8,14 @@
 #define OFFSET_X 31
 #define OFFSET_Y 30.7f
 
-Board::Board(int width, int height):tilesWidth(width), tilesHeight(height){
+Board::Board(int width, int height, int floorNumber):tilesWidth(width), tilesHeight(height){
 	CCSprite::init();
 	autorelease();
 
 	this->setContentSize(CCSize(width * OFFSET_X, height * OFFSET_Y));
 	this->setAnchorPoint(ccp(0,0));
 	setupTiles(width, height);	
-	addMonsters();
+	addMonsters(floorNumber);
 	addStairs(rand()%width, rand()%height);
 }
 
@@ -43,14 +43,14 @@ void Board::setupTiles(int width, int height)
 }
 
 
-void Board::addMonsters()
+void Board::addMonsters(int floorNumber)
 {
 	for(int x = 0; x < tilesWidth; ++x){
 		for(int y = 0; y < tilesHeight; ++y){
 			if(tiles[x][y]->isWalkable()){
 				int r = rand() % 10;
 				if(r == 0){
-					Monster* monster = new Monster(10, 5);
+					Monster* monster = new Monster(10, 5, floorNumber / 1.5);
 					setPosition(monster, x, y);
 					monster->setTilePosition(x, y);
 					addChild(monster, zCreature);
