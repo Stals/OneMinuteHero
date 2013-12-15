@@ -97,7 +97,7 @@ void GameLayer::update(float delta )
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(5, 5);
+	player = new Player(100, 5);
 	player->retain();
 }
 
@@ -105,6 +105,12 @@ void GameLayer::createBoard()
 {
 	if(board){
 		++floor;
+		if(floor == 60){
+			showVictorySceen(this);
+			return;
+		}
+
+
 		this->removeChild(board);
 		timer->addSeconds(SECONDS_PER_FLOOR);
 	}
@@ -388,7 +394,15 @@ void GameLayer::showGameOver(CCObject* pSender)
 	delete keyboard;
 	keyboard = NULL;
 
-	this->addChild(new GameOverScreen(player->getScore(), floor), zGameover);
+	this->addChild(new GameOverScreen(false, player->getScore(), floor), zGameover);
+}
+
+void GameLayer::showVictorySceen(CCObject* pSender)
+{
+	delete keyboard;
+	keyboard = NULL;
+
+	this->addChild(new GameOverScreen(true, player->getScore()), zGameover);
 }
 
 void GameLayer::enableSkill()

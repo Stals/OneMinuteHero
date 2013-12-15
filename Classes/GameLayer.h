@@ -64,6 +64,7 @@ private:
 	void updatePlayerExp();
 
 	void showGameOver(CCObject* pSender);
+	void showVictorySceen(CCObject* pSender);
 
 	void enableSkill();
 	void disableSkill();

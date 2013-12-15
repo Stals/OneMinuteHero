@@ -3,9 +3,9 @@
 #include "TitleScreen.h"
 #include "StringExtension.h"
 
-GameOverScreen::GameOverScreen(long long score, int floor):floor(floor)
+GameOverScreen::GameOverScreen(bool victory, long long score, int floor):victory(victory), floor(floor)
 {
-	setupBackground();
+	setupBackground(victory);
 	keyboard = new Keyboard;
 	setScore(score);
 	this->scheduleUpdate();
@@ -62,11 +62,11 @@ void GameOverScreen::setScore(long long score)
 		setupLabel();
 }
 
-void GameOverScreen::setupBackground()
+void GameOverScreen::setupBackground(bool victory)
 {
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
-	CCSprite* bgSprite = CCSprite::create("gameOverScreen.png");	
+	CCSprite* bgSprite = CCSprite::create(victory ? "victoryScreen.png" : "gameOverScreen.png");	
 	bgSprite->setPosition(ccp(winSize.width/2, winSize.height/2));
 	this->addChild(bgSprite, zBackground);
 }
@@ -81,14 +81,14 @@ void GameOverScreen::setupLabel()
 	label->setPosition(ccp(240, 422));
 
 
+	if(!victory){
+		CCLabelTTF* label2 = CCLabelTTF::create((StringExtension::toString(floor)).c_str(), 
+														"fonts/Quicksand_Bold", 20);
+		label->setColor(ccc3(250, 250, 250));
+		addChild(label2);
 
-	
-	CCLabelTTF* label2 = CCLabelTTF::create((StringExtension::toString(floor)).c_str(), 
-													"fonts/Quicksand_Bold", 20);
-	label->setColor(ccc3(250, 250, 250));
-	addChild(label2);
-
-	label2->setPosition(ccp(240, 362));
+		label2->setPosition(ccp(240, 362));
+	}
 
 }
 
