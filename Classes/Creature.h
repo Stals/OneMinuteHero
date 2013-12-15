@@ -31,6 +31,5 @@ protected:
 	//ProgressBar* hpBar;
 
 	void setupHPBar();
-	void setupLabel();
 };
 

@@ -5,6 +5,7 @@
 
 #include "Constants.h"
 #include "GameLayer.h"
+#include "TitleScreen.h"
 
 USING_NS_CC;
 
@@ -40,7 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	//GameLayer::setTwoPlayers(true);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = GameLayer::scene();
+    CCScene *pScene = TitleScreen::scene();
 	
 
     // run
