@@ -144,7 +144,7 @@ void GameLayer::setupTimer()
 	timer->setEndTimeCallback(this, menu_selector(GameLayer::showGameOver));
 
 	timer->setPosition(ccp(390, -42));
-	timer->start();
+	
 	this->addChild(timer);	
 }
 
@@ -155,7 +155,9 @@ void GameLayer::showTutorial()
 	if(!tutorialShown){
 		tutorialShown = true;
 
-		addChild(new TutorialLayer, zTutorial);
+		addChild(new TutorialLayer(timer), zTutorial);
+	}else{
+		timer->start();
 	}
 }
 

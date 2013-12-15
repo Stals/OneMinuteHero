@@ -1,7 +1,7 @@
 #include "TutorialLayer.h"
 
 
-TutorialLayer::TutorialLayer()
+TutorialLayer::TutorialLayer(TimerSprite* timer):timer(timer)
 {
 	CCLayer::init();
 	setupBackground();
@@ -27,6 +27,7 @@ bool TutorialLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 	//CCDirector::sharedDirector()->replaceScene(TitleScreen::scene());
 	if(this->isVisible()){
 		this->setVisible(false);
+		timer->start();
 		return true;
 	}
 	return false;
