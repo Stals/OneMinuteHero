@@ -63,22 +63,36 @@ void Board::addMonsters()
 
 void Board::addStairs(int x, int y)
 {
-	BoardTile* oldTile = tiles[x][y];
-	removeChild(oldTile, true);
-	Stairs* stairs = new Stairs;
-	tiles[x][y] = stairs;
-	setPosition(stairs, x, y);
-	addChild(stairs);
-	stairsPosition = TilePosition(x, y);
-	// TODO если встал на них - тогда нужно вызывать метод который сюда передадут - так как делаются кокосовский колбэки - при нажатии кнопки например
+
+	if(tiles[x][y]->isWalkable()){
+		if(!this->isMonsterOn(x, y)){
+
+			BoardTile* oldTile = tiles[x][y];
+			removeChild(oldTile, true);
+			Stairs* stairs = new Stairs;
+			tiles[x][y] = stairs;
+			setPosition(stairs, x, y);
+			addChild(stairs);
+			stairsPosition = TilePosition(x, y);
+			return;
+		}
+	}
+	addStairs(rand()%tilesWidth, rand()%tilesHeight);
 }
 
 void Board::addPlayer(Player* player, int x, int y)
 {
-	this->player = player;
-	setPosition(player, x, y);
-	addChild(player, zCreature);
-	player->setTilePosition(x, y);
+
+	if(tiles[x][y]->isWalkable()){
+		if(!this->isMonsterOn(x, y)){
+			this->player = player;
+			setPosition(player, x, y);
+			addChild(player, zCreature);
+			player->setTilePosition(x, y);
+			return;
+		}	
+	}
+	addPlayer(player, rand()%tilesWidth, rand()%tilesHeight);
 }
 
 bool Board::movePlayerTo(int x, int y)
