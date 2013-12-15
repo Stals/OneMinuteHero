@@ -8,6 +8,8 @@ USING_NS_CC;
 
 #define FIRE_AOE_DAMAGE 9
 #define HEAL_SKILL_AMOUNT 25
+#define TIME_SKILL_DELAY 10
+
 #define SECONDS_PER_FLOOR 10
 
 GameLayer::~GameLayer(){
@@ -234,6 +236,8 @@ void GameLayer::setupSkillButton()
 		 useFireSkill();
 	 }else if(playerSkill == SkillType::Heal){
 		 useHealSkill();
+	 }else if(playerSkill == SkillType::Time){
+		useTimeSkill();
 	 }
  }
 
@@ -278,6 +282,18 @@ void GameLayer::setupSkillButton()
 	 updatePlayerHP();
  }
 
+ void GameLayer::useTimeSkill()
+ {
+	timer->runAction(CCBlink::create(0.5f, 2));
+
+	CCSequence* seq = CCSequence::create(
+								CCCallFunc::create( timer, callfunc_selector(TimerSprite::stop)),
+								CCDelayTime::create(TIME_SKILL_DELAY),
+								CCCallFunc::create( timer, callfunc_selector(TimerSprite::start)),
+								CCBlink::create(0.5f, 2),
+								NULL);
+	timer->runAction(seq);
+ }
 
 void GameLayer::updatePlayerHP()
 {
