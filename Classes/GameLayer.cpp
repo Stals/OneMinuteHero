@@ -1,4 +1,5 @@
 #include "GameLayer.h"
+#include "GameOverScreen.h"
 
 USING_NS_CC;
 #define HALF_SPRITE_SIZE 15.5f
@@ -195,6 +196,7 @@ void GameLayer::setupSkillButton()
 		 updatePlayerHP();
 		if(player->isDead()){
 			// show dead screen
+			CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene());
 		}
 
 	 }else{
