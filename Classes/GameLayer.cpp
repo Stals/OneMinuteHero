@@ -8,6 +8,7 @@ USING_NS_CC;
 
 #define FIRE_AOE_DAMAGE 9
 #define HEAL_SKILL_AMOUNT 25
+#define SECONDS_PER_FLOOR 10
 
 GameLayer::~GameLayer(){
 	player->release();
@@ -48,7 +49,9 @@ bool GameLayer::init()
 	setupBackground();
 	setupPlayer();
 	setupBars();
+	setupTimer();
 	createBoard();
+
 
 	setTouchEnabled(true);
     scheduleUpdate();
@@ -87,6 +90,7 @@ void GameLayer::createBoard()
 {
 	if(board){
 		this->removeChild(board);
+		timer->addSeconds(SECONDS_PER_FLOOR);
 	}
 
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
@@ -110,6 +114,16 @@ void GameLayer::setupBars()
 
 	this->addChild(hpBar);
 	this->addChild(expBar);
+}
+
+void GameLayer::setupTimer()
+{
+	timer = new TimerSprite(60, 30, ccc3(0,0,0));
+	timer->setEndTimeCallback(this, menu_selector(GameLayer::showGameOver));
+
+	timer->setPosition(ccp(390, -45));
+	timer->start();
+	this->addChild(timer);	
 }
 
 void GameLayer::setSkill(SkillType skillType)
@@ -196,7 +210,7 @@ void GameLayer::setupSkillButton()
 		 updatePlayerHP();
 		if(player->isDead()){
 			// show dead screen
-			CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene(100500));
+			this->showGameOver(this);
 		}
 
 	 }else{
@@ -274,3 +288,7 @@ void GameLayer::updatePlayerExp()
 {
 }
 
+void GameLayer::showGameOver(CCObject* pSender)
+{
+	CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene(100500));
+}

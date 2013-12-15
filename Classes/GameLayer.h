@@ -5,6 +5,7 @@
 
 #include "Board.h"
 #include "ProgressBar.h"
+#include "Timer.h"
 
 
 class GameLayer : public cocos2d::CCLayer
@@ -27,6 +28,7 @@ private:
 	SkillType playerSkill;
 	ProgressBar* hpBar;
 	ProgressBar* expBar;
+	TimerSprite* timer;
 
 	// implement the "static node()" method manually
     CREATE_FUNC(GameLayer);
@@ -37,6 +39,7 @@ private:
 	void createBoard();
 	void setupSkillButton();
 	void setupBars();
+	void setupTimer();
 
 	void processKeyboardInputs();
 
@@ -51,4 +54,6 @@ private:
 
 	void updatePlayerHP();
 	void updatePlayerExp();
+
+	void showGameOver(CCObject* pSender);
 };
