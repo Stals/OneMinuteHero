@@ -3,6 +3,7 @@
 #include "EmptyTile.h"
 #include "Stairs.h"
 #include <algorithm>
+#include "BoardCreator.h"
 
 #define OFFSET_X 31
 #define OFFSET_Y 30.7f
@@ -26,27 +27,18 @@ void Board::setPlayerOnStairsCallback(const CallbackData& callbackData)
 void Board::setupTiles(int width, int height)
 {
 	// TODO вынести создание комнат и тд в отдельный класс
+	/*
+	
+	}*/
 
-	tiles.resize(width);
+	BoardCreator::create(tiles);
 
 	for(int x = 0; x < width; ++x){
-		tiles[x].resize(height);
 		for(int y = 0; y < height; ++y){
-			
-			int r = rand() % 5;
-			
-			if(r == 0){
-				BoardTile* tile = new Wall;
-				tiles[x][y] = tile;
-				setPosition(tile, x, y);
-				addChild(tile);
-			}else{
-				BoardTile* tile = new EmptyTile;
-				tiles[x][y] = tile;
-				setPosition(tile, x, y);
-				addChild(tile);
-			}
-		}	
+			BoardTile* tile = tiles[x][y];
+			setPosition(tile, x, y);
+			addChild(tile);		
+		}
 	}
 }
 
