@@ -82,15 +82,16 @@ void Board::addStairs(int x, int y)
 
 void Board::addPlayer(Player* player, int x, int y)
 {
-
-	if(tiles[x][y]->isWalkable()){
-		if(!this->isMonsterOn(x, y)){
-			this->player = player;
-			setPosition(player, x, y);
-			addChild(player, zCreature);
-			player->setTilePosition(x, y);
-			return;
-		}	
+	if(x != stairsPosition.x || y != stairsPosition.y){
+		if(tiles[x][y]->isWalkable()){
+			if(!this->isMonsterOn(x, y)){
+				this->player = player;
+				setPosition(player, x, y);
+				addChild(player, zCreature);
+				player->setTilePosition(x, y);
+				return;
+			}	
+		}
 	}
 	addPlayer(player, rand()%tilesWidth, rand()%tilesHeight);
 }
