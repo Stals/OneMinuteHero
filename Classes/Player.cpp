@@ -5,7 +5,7 @@ Player::Player(int maxHp, int damage):Creature("hero.png", maxHp, damage, 1)
 {
 	score = 0;
 	exp = 0;
-	maxExp = 100;
+	maxExp = 100;	
 }
 
 void Player::addExp(int exp)
@@ -16,7 +16,7 @@ void Player::addExp(int exp)
 	if(this->exp >= getMaxExp()){
 		this->exp = 0;
 		++level;
-		addHp(getMaxHP() * 0.3f);
+		addHp(getMaxHP() * 0.2f);
 
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/levelup.wav");
 		showLevelupLabel();
@@ -99,7 +99,17 @@ void Player::showLevelupLabel()
 	hpChangeLabel->runAction(seq);
 }
 
+void Player::regen(float dt)
+{
+	addHp(scaleVar(2));
+}
+
 long long Player::getScore()
 {
 	return score;
+}
+
+void Player::shceduleRegen()
+{
+	schedule(schedule_selector(Player::regen), 2.f);
 }

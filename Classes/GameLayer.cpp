@@ -13,7 +13,7 @@ USING_NS_CC;
 #define HEAL_SKILL_AMOUNT player->getHealAmount()
 #define TIME_SKILL_DELAY player->getStopTimeSeconds()
 
-#define SECONDS_PER_FLOOR 10
+#define SECONDS_PER_FLOOR 7
 
 GameLayer::~GameLayer(){
 	player->release();
@@ -91,12 +91,13 @@ void GameLayer::setupKeyboard()
 
 void GameLayer::update(float delta )
 {
+	updatePlayerHP();
 	processKeyboardInputs();
 }
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(100, 4);
+	player = new Player(100, 5);
 	player->retain();
 }
 
@@ -117,6 +118,8 @@ void GameLayer::createBoard()
 	this->addChild(board, zBoard);
 	board->addPlayer(player, player->getTileX(), player->getTileY());
 	board->setPlayerOnStairsCallback(CallbackData(this, menu_selector(GameLayer::playerOnStairsCallback)));
+
+	player->shceduleRegen();
 }
 
 void GameLayer::setupBars()
@@ -282,12 +285,12 @@ void GameLayer::setupSkillButton()
 	 if(!skill_button->isEnabled()) return;
 	
 	int delay = 0;
-
+	bool success = true;
 	 if(playerSkill == SkillType::Fire){
 		 useFireSkill();
 		 delay = player->getFireSkillDelay();
 	 }else if(playerSkill == SkillType::Heal){
-		 useHealSkill();
+		 success = useHealSkill();
 		 delay = player->getHealSkillDelay();
 	 }else if(playerSkill == SkillType::Time){
 		useTimeSkill();
@@ -295,13 +298,14 @@ void GameLayer::setupSkillButton()
 	 }
 
 
-	 
-	CCSequence* seq = CCSequence::create(
-						CCCallFunc::create( this, callfunc_selector(GameLayer::disableSkill)),
-						CCDelayTime::create(delay),
-						CCCallFunc::create( this, callfunc_selector(GameLayer::enableSkill)),
-						NULL);
-	this->runAction(seq);
+	 if(success){
+		CCSequence* seq = CCSequence::create(
+							CCCallFunc::create( this, callfunc_selector(GameLayer::disableSkill)),
+							CCDelayTime::create(delay),
+							CCCallFunc::create( this, callfunc_selector(GameLayer::enableSkill)),
+							NULL);
+		this->runAction(seq);
+	 }
  }
 
  void GameLayer::useFireSkill()
@@ -343,11 +347,15 @@ void GameLayer::setupSkillButton()
 
  }
 
- void GameLayer::useHealSkill()
+ bool GameLayer::useHealSkill()
  {
-	 player->addHp(HEAL_SKILL_AMOUNT, true);
-	 updatePlayerHP();
-	 CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/heal.wav");
+	 if(player->getHP() < player->getMaxHP()){
+		 player->addHp(HEAL_SKILL_AMOUNT, true);
+		 updatePlayerHP();
+		 CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/heal.wav");
+		 return true;
+	 }
+	 return false;
  }
 
  void GameLayer::useTimeSkill()

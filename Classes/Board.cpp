@@ -50,7 +50,7 @@ void Board::addMonsters(int floorNumber)
 			if(tiles[x][y]->isWalkable()){
 				int r = rand() % 10;
 				if(r == 0){
-					Monster* monster = new Monster(10, 5, floorNumber / 1.5);
+					Monster* monster = new Monster(10, 7, floorNumber / 1.5);
 					setPosition(monster, x, y);
 					monster->setTilePosition(x, y);
 					addChild(monster, zCreature);

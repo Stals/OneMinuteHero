@@ -57,7 +57,7 @@ private:
 
 	void useSkill(CCObject* pSender);
 	void useFireSkill();
-	void useHealSkill();
+	bool useHealSkill();
 	void useTimeSkill();
 
 	void updatePlayerHP();

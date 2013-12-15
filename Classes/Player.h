@@ -21,6 +21,8 @@ public:
 
 	long long getScore();
 
+	void shceduleRegen();
+
 private:
 	int exp;
 	int maxExp;
@@ -28,4 +30,6 @@ private:
 
 	void showAddExpLabel(int exp);
 	void showLevelupLabel();
+
+	void regen(float dt);
 };

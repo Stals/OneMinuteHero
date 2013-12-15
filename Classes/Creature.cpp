@@ -75,19 +75,20 @@ void Creature::addHp(int hp, bool animated)
 	const int newHP = this->hp;
 	const int diff = newHP - beforeHP;
 
+	if(diff > 0){
+		CCLabelTTF* hpChangeLabel = CCLabelTTF::create(("+" + StringExtension::toString(diff)).c_str(), 
+														"fonts/Quicksand_Bold", 12);
+		hpChangeLabel->setColor(ccc3(255, 0, 16));
+		addChild(hpChangeLabel);
 
-	CCLabelTTF* hpChangeLabel = CCLabelTTF::create(("+" + StringExtension::toString(diff)).c_str(), 
-													"fonts/Quicksand_Bold", 12);
-	hpChangeLabel->setColor(ccc3(255, 0, 16));
-	addChild(hpChangeLabel);
+		hpChangeLabel->setPosition(ccp(2 + this->getContentSize().width/2, 5));
 
-	hpChangeLabel->setPosition(ccp(2 + this->getContentSize().width/2, 5));
-
-	hpChangeLabel->runAction(CCMoveBy::create(1, ccp(0, 10)));
-	CCSequence* seq = CCSequence::create(CCFadeOut::create(1),
-										 CCCallFunc::create( hpChangeLabel, callfunc_selector(CCSprite::removeFromParent)),
-										 NULL);
-	hpChangeLabel->runAction(seq);
+		hpChangeLabel->runAction(CCMoveBy::create(1, ccp(0, 10)));
+		CCSequence* seq = CCSequence::create(CCFadeOut::create(1),
+											 CCCallFunc::create( hpChangeLabel, callfunc_selector(CCSprite::removeFromParent)),
+											 NULL);
+		hpChangeLabel->runAction(seq);
+	}
 
 }
 
