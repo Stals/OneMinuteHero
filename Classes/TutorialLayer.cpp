@@ -24,7 +24,6 @@ void TutorialLayer::setupBackground()
 
 bool TutorialLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-	//CCDirector::sharedDirector()->replaceScene(TitleScreen::scene());
 	if(this->isVisible()){
 		this->setVisible(false);
 		timer->start();
