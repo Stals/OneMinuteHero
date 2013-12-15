@@ -16,6 +16,7 @@ void Player::addExp(int exp)
 	if(this->exp >= getMaxExp()){
 		this->exp = 0;
 		++level;
+		addHp(getMaxHP() * 0.3f);
 
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/levelup.wav");
 		showLevelupLabel();

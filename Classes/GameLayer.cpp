@@ -259,6 +259,7 @@ void GameLayer::setupSkillButton()
 		// TODO give EXP
 		player->addExp(monster->getRewardExp());
 		updatePlayerExp();
+		updatePlayerHP();
 
 		const int newX = monster->getTileX();
 		const int newY = monster->getTileY();		
@@ -311,6 +312,8 @@ void GameLayer::setupSkillButton()
 				monster->substractHp(FIRE_AOE_DAMAGE, true);
 				if(monster->isDead()){
 					player->addExp(monster->getRewardExp());
+					updatePlayerExp();
+					updatePlayerHP();
 					board->removeMonster(monster);
 				}
 			}
