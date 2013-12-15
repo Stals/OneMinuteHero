@@ -87,7 +87,7 @@ void GameOverScreen::setupLabel()
 		label->setColor(ccc3(250, 250, 250));
 		addChild(label2);
 
-		label2->setPosition(ccp(240, 362));
+		label2->setPosition(ccp(240, 370));
 	}
 
 }
