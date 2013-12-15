@@ -37,5 +37,8 @@ protected:
 	//ProgressBar* hpBar;
 
 	void setupHPBar();
+
+	// scales var depending on the level
+	int scaleVar(int var);
 };
 

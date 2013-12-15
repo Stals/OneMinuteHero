@@ -3,14 +3,17 @@
 
 Player::Player(int maxHp, int damage):Creature("hero.png", maxHp, damage)
 {
+	score = 0;
 	exp = 0;
 	maxExp = 100;
 }
 
 void Player::addExp(int exp)
 {
+	score += (long long) exp * level;
+
 	this->exp += exp;
-	if(this->exp >= maxExp){
+	if(this->exp >= getMaxExp()){
 		this->exp = 0;
 		++level;
 
@@ -29,7 +32,22 @@ int Player::getExp()
 
 int Player::getMaxExp()
 {
-	return maxExp;
+	return scaleVar(maxExp);
+}
+
+int Player::getHealAmount()
+{
+	return scaleVar(25);
+}
+
+int Player::getFireDamage()
+{
+	return scaleVar(25);
+}
+
+int Player::getStopTimeSeconds()
+{
+	return scaleVar(10);
 }
 
 void Player::showAddExpLabel(int exp)
@@ -62,4 +80,9 @@ void Player::showLevelupLabel()
 										 CCCallFunc::create( hpChangeLabel, callfunc_selector(CCSprite::removeFromParent)),
 										 NULL);
 	hpChangeLabel->runAction(seq);
+}
+
+long long Player::getScore()
+{
+	return score;
 }

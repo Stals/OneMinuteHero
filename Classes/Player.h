@@ -11,9 +11,16 @@ public:
 	int getExp();
 	int getMaxExp();
 
+	int getHealAmount();
+	int getFireDamage();
+	int getStopTimeSeconds();
+
+	long long getScore();
+
 private:
 	int exp;
 	int maxExp;
+	long long score;
 
 	void showAddExpLabel(int exp);
 	void showLevelupLabel();

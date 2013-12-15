@@ -12,5 +12,5 @@ Creature((std::string("monster") + StringExtension::toString(rand()%5 +1) + ".pn
 
 int Monster::getRewardExp()
 {
-	return 10;
+	return scaleVar(10);
 }

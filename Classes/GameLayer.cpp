@@ -7,9 +7,9 @@ USING_NS_CC;
 #define BOARD_OFFSET_X HALF_SPRITE_SIZE + 10
 #define BOARD_OFFSET_Y HALF_SPRITE_SIZE*5 + 14
 
-#define FIRE_AOE_DAMAGE 25
-#define HEAL_SKILL_AMOUNT 25
-#define TIME_SKILL_DELAY 10
+#define FIRE_AOE_DAMAGE player->getFireDamage()
+#define HEAL_SKILL_AMOUNT player->getHealAmount()
+#define TIME_SKILL_DELAY player->getStopTimeSeconds()
 
 #define SECONDS_PER_FLOOR 10
 
@@ -324,5 +324,5 @@ void GameLayer::updatePlayerExp()
 
 void GameLayer::showGameOver(CCObject* pSender)
 {
-	CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene(100500));
+	CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene(player->getScore()));
 }

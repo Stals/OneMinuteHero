@@ -4,6 +4,10 @@
 Creature::Creature(const char* filename, int maxHp, int damage): tileX(0), tileY(0), hp(maxHp), maxHp(maxHp), damage(damage)
 {
 	CCSprite::init();
+	level = 1;
+
+	hp = getMaxHP();
+
 	//autorelease();
 
 	CCSprite* sprite = CCSprite::create(filename);
@@ -63,8 +67,8 @@ void Creature::addHp(int hp, bool animated)
 {
 	const int beforeHP = this->hp;
 
-	if(this->hp + hp > this->maxHp){
-		this->hp = this->maxHp;
+	if(this->hp + hp > this->getMaxHP()){
+		this->hp = this->getMaxHP();
 	}else{
 		this->hp += hp;
 	}
@@ -95,13 +99,13 @@ int Creature::getHP()
 
 int Creature::getMaxHP()
 {
-	return maxHp;
+	return scaleVar(maxHp);
 }
 
 
 int Creature::getDamage()
 {
-	return damage;
+	return scaleVar(damage);
 }
 
 bool Creature::isDead(){
@@ -117,3 +121,7 @@ void Creature::setupHPBar()
 	hpBar->setVisible(false);*/
 }
 
+int Creature::scaleVar(int var)
+{
+	return (var + ((float)level / 10.f) * var) + 0.5;
+}
