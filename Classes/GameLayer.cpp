@@ -97,7 +97,7 @@ void GameLayer::update(float delta )
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(100, 5);
+	player = new Player(5, 5);
 	player->retain();
 }
 
@@ -388,7 +388,7 @@ void GameLayer::showGameOver(CCObject* pSender)
 	delete keyboard;
 	keyboard = NULL;
 
-	this->addChild(new GameOverScreen(player->getScore()), zGameover);
+	this->addChild(new GameOverScreen(player->getScore(), floor), zGameover);
 }
 
 void GameLayer::enableSkill()

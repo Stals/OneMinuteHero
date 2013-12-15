@@ -5,7 +5,7 @@
 
 class GameOverScreen : public CCLayer{
 public:
-	GameOverScreen(long long score);
+	GameOverScreen(long long score, int floor);
 	~GameOverScreen();
 	/*virtual bool init();
 	static cocos2d::CCScene* scene(long long score);*/
@@ -24,6 +24,7 @@ public:
 
 private:
 	long long score;
+	int floor;
 	Keyboard* keyboard;
 
 	//CREATE_FUNC(GameOverScreen);

@@ -3,7 +3,7 @@
 #include "TitleScreen.h"
 #include "StringExtension.h"
 
-GameOverScreen::GameOverScreen(long long score)
+GameOverScreen::GameOverScreen(long long score, int floor):floor(floor)
 {
 	setupBackground();
 	keyboard = new Keyboard;
@@ -79,6 +79,16 @@ void GameOverScreen::setupLabel()
 	addChild(label);
 
 	label->setPosition(ccp(240, 422));
+
+
+
+	
+	CCLabelTTF* label2 = CCLabelTTF::create((StringExtension::toString(floor)).c_str(), 
+													"fonts/Quicksand_Bold", 20);
+	label->setColor(ccc3(250, 250, 250));
+	addChild(label2);
+
+	label2->setPosition(ccp(240, 362));
 
 }
 
