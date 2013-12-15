@@ -72,9 +72,9 @@ void AppDelegate::applicationWillEnterForeground() {
 
 void AppDelegate::preloadSounds(){
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.0f);
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/levelup.wav");
+	/*CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/levelup.wav");
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/fire.wav");
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/time.wav");
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/heal.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/heal.wav")*/;
 }
 
