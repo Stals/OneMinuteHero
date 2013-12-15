@@ -110,7 +110,7 @@ void GameLayer::createBoard()
 			return;
 		}
 
-
+		board->removeChild(player, false);
 		this->removeChild(board);
 		timer->addSeconds(SECONDS_PER_FLOOR);
 	}
@@ -126,7 +126,7 @@ void GameLayer::createBoard()
 	board->setPlayerOnStairsCallback(CallbackData(this, menu_selector(GameLayer::playerOnStairsCallback)));
 
 	player->shceduleRegen();
-	player->cleanLabels();
+	//player->cleanLabels();
 }
 
 void GameLayer::setupBars()
