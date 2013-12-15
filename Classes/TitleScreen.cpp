@@ -81,15 +81,23 @@ void TitleScreen::setupButtons()
 
 void TitleScreen::healChosen(CCObject* pSender)
 {
-	CCDirector::sharedDirector()->replaceScene(GameLayer::scene());
+	openGameLayer(SkillType::Heal);
 }
 
 void TitleScreen::fireChosen(CCObject* pSender)
 {
-	CCDirector::sharedDirector()->replaceScene(GameLayer::scene());
+	openGameLayer(SkillType::Fire);
 }
 
 void TitleScreen::timeChosen(CCObject* pSender)
 {
-	CCDirector::sharedDirector()->replaceScene(GameLayer::scene());
+	openGameLayer(SkillType::Time);
+}
+
+void TitleScreen::openGameLayer(SkillType skillType)
+{
+	CCScene *scene = GameLayer::scene();
+	GameLayer* gameLayer = (GameLayer*)scene->getChildByTag(1337);
+	gameLayer->setSkill(skillType);
+	CCDirector::sharedDirector()->replaceScene(scene);
 }

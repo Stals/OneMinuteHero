@@ -17,4 +17,6 @@ private:
 	void healChosen(CCObject* pSender);
 	void fireChosen(CCObject* pSender);
 	void timeChosen(CCObject* pSender);
+
+	void openGameLayer(SkillType skillType);
 };

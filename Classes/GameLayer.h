@@ -18,10 +18,13 @@ public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::CCScene* scene();
 
+	void setSkill(SkillType skillType);
+
 private:
 	Keyboard* keyboard;
 	Board* board;
 	Player* player;
+	SkillType playerSkill;
 
 	// implement the "static node()" method manually
     CREATE_FUNC(GameLayer);
@@ -30,6 +33,7 @@ private:
 	void setupKeyboard();
 	void setupPlayer();
 	void createBoard();
+	void setupSkillButton();
 
 	void processKeyboardInputs();
 
@@ -37,4 +41,6 @@ private:
 
 	void movePlayer(int x, int y);
 	void fightMonster(Monster* monster);
+
+	void useSkill(CCObject* pSender);
 };

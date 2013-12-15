@@ -3,7 +3,7 @@
 USING_NS_CC;
 #define HALF_SPRITE_SIZE 15.5f
 #define BOARD_OFFSET_X HALF_SPRITE_SIZE + 10
-#define BOARD_OFFSET_Y HALF_SPRITE_SIZE + 14
+#define BOARD_OFFSET_Y HALF_SPRITE_SIZE*5 + 14
 
 GameLayer::~GameLayer(){
 	player->release();
@@ -67,7 +67,6 @@ void GameLayer::setupKeyboard()
 }
 
 
-
 void GameLayer::update(float delta )
 {
 	processKeyboardInputs();
@@ -87,13 +86,47 @@ void GameLayer::createBoard()
 
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
-	board = new Board(15, 20);
+	board = new Board(15, 18);
 	board->setPositionX(BOARD_OFFSET_X);
 	board->setPositionY(BOARD_OFFSET_Y);
 	
 	this->addChild(board, zBoard);
 	board->addPlayer(player, player->getTileX(), player->getTileY());
 	board->setPlayerOnStairsCallback(CallbackData(this, menu_selector(GameLayer::playerOnStairsCallback)));
+}
+
+void GameLayer::setSkill(SkillType skillType)
+{
+	playerSkill = skillType;
+	setupSkillButton();
+}
+
+void GameLayer::setupSkillButton()
+{
+	std::string filename;
+	switch(playerSkill){
+	case Heal:
+		filename = "healSkill.png"; break;
+	case Fire:
+		filename = "fireSkill.png"; break;
+	case Time:
+		filename = "timeSkill.png"; break;
+	}
+
+
+
+	CCSprite *skillUnselected = CCSprite::create(filename.c_str());
+	CCSprite *skillSelected = CCSprite::create(filename.c_str());
+	CCMenuItemSprite *skill_button = CCMenuItemSprite::create(skillUnselected, skillSelected, skillUnselected,
+		this, menu_selector(GameLayer::useSkill));
+
+	CCMenu* menu = CCMenu::create(skill_button, NULL);
+	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	// Set position of menu to be below the title text
+	menu->setPosition(ccp(winSize.width - 36, 49));
+
+	// Add menu to layer
+	this->addChild(menu, 2);
 }
 
  void GameLayer::processKeyboardInputs()
@@ -155,4 +188,9 @@ void GameLayer::createBoard()
  void GameLayer::playerOnStairsCallback(CCObject* pSender)
  {
 	 createBoard();
+ }
+
+ void GameLayer::useSkill(CCObject* pSender)
+ {
+	 int i = 0;
  }

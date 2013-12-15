@@ -11,3 +11,9 @@ enum zOrder{
 	zCreature,
 	zWall
 };
+
+enum SkillType{
+	Fire,
+	Heal,
+	Time
+};
