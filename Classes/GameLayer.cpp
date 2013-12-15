@@ -95,7 +95,7 @@ void GameLayer::update(float delta )
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(5, 4);
+	player = new Player(100, 4);
 	player->retain();
 }
 
@@ -198,6 +198,8 @@ void GameLayer::setupSkillButton()
 
  void GameLayer::processKeyboardInputs()
  {
+	 if(!keyboard) return;
+
 	 if(keyboard->wasKeyPressed(InputKey::Key_ESC)){
 		CCDirector::sharedDirector()->replaceScene(TitleScreen::scene());
 		return;
@@ -373,6 +375,9 @@ void GameLayer::updatePlayerExp()
 
 void GameLayer::showGameOver(CCObject* pSender)
 {
+	delete keyboard;
+	keyboard = NULL;
+
 	this->addChild(new GameOverScreen(player->getScore()), zGameover);
 }
 

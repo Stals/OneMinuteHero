@@ -83,7 +83,7 @@ void GameOverScreen::setupLabel()
 }
 
 void GameOverScreen::update(float dt){
-	if(keyboard->wasAnyKeyPressed())
+	if(keyboard->wasKeyPressed(Key_ESC))
 	{
 		CCDirector::sharedDirector()->replaceScene(TitleScreen::scene());
 	}
