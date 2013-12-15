@@ -104,7 +104,10 @@ int Creature::getMaxHP()
 
 int Creature::getDamage()
 {
-	return scaleVar(damage);
+	int scaledDamage = scaleVar(damage);
+
+
+	return (scaledDamage + (rand() % 3) - 1);
 }
 
 int Creature::getLevel()
