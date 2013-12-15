@@ -79,7 +79,7 @@ void GameLayer::update(float delta )
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(100, 4);
+	player = new Player(10, 4);
 	player->retain();
 }
 
@@ -196,7 +196,7 @@ void GameLayer::setupSkillButton()
 		 updatePlayerHP();
 		if(player->isDead()){
 			// show dead screen
-			CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene());
+			CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene(100500));
 		}
 
 	 }else{
