@@ -6,7 +6,7 @@ USING_NS_CC;
 #define BOARD_OFFSET_X HALF_SPRITE_SIZE + 10
 #define BOARD_OFFSET_Y HALF_SPRITE_SIZE*5 + 14
 
-#define FIRE_AOE_DAMAGE 9
+#define FIRE_AOE_DAMAGE 25
 #define HEAL_SKILL_AMOUNT 25
 #define TIME_SKILL_DELAY 10
 
@@ -123,7 +123,7 @@ void GameLayer::setupTimer()
 	timer = new TimerSprite(60, 30, ccc3(0,0,0));
 	timer->setEndTimeCallback(this, menu_selector(GameLayer::showGameOver));
 
-	timer->setPosition(ccp(390, -45));
+	timer->setPosition(ccp(390, -42));
 	timer->start();
 	this->addChild(timer);	
 }
