@@ -21,6 +21,7 @@ public:
 	int getMaxHP();
 
 	int getDamage();
+	int getLevel();
 
 	bool isDead();
 

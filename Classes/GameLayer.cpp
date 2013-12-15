@@ -1,6 +1,7 @@
 #include "GameLayer.h"
 #include "GameOverScreen.h"
 #include "TitleScreen.h"
+#include "StringExtension.h"
 
 USING_NS_CC;
 #define HALF_SPRITE_SIZE 15.5f
@@ -52,7 +53,8 @@ bool GameLayer::init()
 	setupBackground();
 	setupPlayer();
 	setupBars();
-	
+	setupLevelLabel();
+
 	updatePlayerHP();
 	updatePlayerExp();
 
@@ -121,6 +123,14 @@ void GameLayer::setupBars()
 
 	this->addChild(hpBar);
 	this->addChild(expBar);
+}
+
+void GameLayer::setupLevelLabel()
+{
+	levelLabel = CCLabelTTF::create("Lv. 1", "fonts/Quicksand_Bold", 14);
+	levelLabel->setColor(ccc3(0,0,0));
+	this->addChild(levelLabel);
+	levelLabel->setPosition(ccp(91 + 40 + 91, 30));
 }
 
 void GameLayer::setupTimer()
@@ -320,6 +330,7 @@ void GameLayer::updatePlayerHP()
 void GameLayer::updatePlayerExp()
 {
 	expBar->setPercent((player->getExp() / (double)player->getMaxExp()) * 100.f);
+	levelLabel->setString(("Lv. " + StringExtension::toString(player->getLevel())).c_str());
 }
 
 void GameLayer::showGameOver(CCObject* pSender)

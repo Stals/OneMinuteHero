@@ -29,6 +29,7 @@ private:
 	ProgressBar* hpBar;
 	ProgressBar* expBar;
 	TimerSprite* timer;
+	CCLabelTTF* levelLabel;
 
 	// implement the "static node()" method manually
     CREATE_FUNC(GameLayer);
@@ -39,6 +40,7 @@ private:
 	void createBoard();
 	void setupSkillButton();
 	void setupBars();
+	void setupLevelLabel();
 	void setupTimer();
 
 	void processKeyboardInputs();

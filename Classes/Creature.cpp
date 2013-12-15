@@ -108,6 +108,11 @@ int Creature::getDamage()
 	return scaleVar(damage);
 }
 
+int Creature::getLevel()
+{
+	return level;
+}
+
 bool Creature::isDead(){
 	return hp <= 0;
 }
