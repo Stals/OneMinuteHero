@@ -6,8 +6,9 @@
 #include <algorithm>
 #include <fstream>
 #include "StringExtension.h"
+#include "s3eFile.h"
 
-#define LEVELS 5
+#define LEVELS 8
 
 void BoardCreator::create(std::vector<std::vector<BoardTile*> >& tiles)
 {
@@ -15,7 +16,7 @@ void BoardCreator::create(std::vector<std::vector<BoardTile*> >& tiles)
 	int height = 18;
 
 	std::string filename = "levels/";
-	filename.append(StringExtension::toString(rand()%LEVELS + 1)).append(".txt");
+	filename.append(StringExtension::toString(rand()%countLevels() + 1)).append(".txt");
 
 	std::ifstream infile(filename.c_str());
 
@@ -27,6 +28,8 @@ void BoardCreator::create(std::vector<std::vector<BoardTile*> >& tiles)
 		std::cout<<line<<std::endl;
 	}
 
+	
+	
 	/***/
 	tiles.resize(width);
 	for(int x = 0; x < width; ++x){
@@ -50,3 +53,7 @@ void BoardCreator::create(std::vector<std::vector<BoardTile*> >& tiles)
 	}
 }
 
+int BoardCreator::countLevels()
+{
+	return LEVELS;
+}
