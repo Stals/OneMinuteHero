@@ -210,6 +210,7 @@ void GameLayer::setupSkillButton()
 
  void GameLayer::fightMonster(Monster* monster)
  {
+	 CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/hit.wav");
 	 monster->substractHp(player->getDamage());
 	 if(!monster->isDead()){
 		 // show animation of player attacking enemy		 
