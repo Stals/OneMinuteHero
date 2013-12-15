@@ -9,3 +9,8 @@ Creature((std::string("monster") + StringExtension::toString(rand()%5 +1) + ".pn
 	addChild(sprite);*/
 	autorelease();
 }
+
+int Monster::getRewardExp()
+{
+	return 10;
+}

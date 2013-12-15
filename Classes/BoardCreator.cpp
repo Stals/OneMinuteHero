@@ -25,7 +25,7 @@ void BoardCreator::create(std::vector<std::vector<BoardTile*> >& tiles)
 	while (std::getline( infile, line))
 	{
 		lines.push_back(line);
-		std::cout<<line<<std::endl;
+		//std::cout<<line<<std::endl;
 	}
 
 	

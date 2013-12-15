@@ -28,6 +28,8 @@ protected:
 	int tileX;
 	int tileY;
 
+	int level;
+
 	int hp;
 	int maxHp;
 	int damage;

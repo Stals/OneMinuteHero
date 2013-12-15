@@ -52,6 +52,10 @@ bool GameLayer::init()
 	setupBackground();
 	setupPlayer();
 	setupBars();
+	
+	updatePlayerHP();
+	updatePlayerExp();
+
 	setupTimer();
 	createBoard();
 
@@ -224,6 +228,8 @@ void GameLayer::setupSkillButton()
 
 	 }else{
 		// TODO give EXP
+		player->addExp(monster->getRewardExp());
+		updatePlayerExp();
 
 		const int newX = monster->getTileX();
 		const int newY = monster->getTileY();		
@@ -275,6 +281,7 @@ void GameLayer::setupSkillButton()
 			if(monster){
 				monster->substractHp(FIRE_AOE_DAMAGE, true);
 				if(monster->isDead()){
+					player->addExp(monster->getRewardExp());
 					board->removeMonster(monster);
 				}
 			}
@@ -312,6 +319,7 @@ void GameLayer::updatePlayerHP()
 
 void GameLayer::updatePlayerExp()
 {
+	expBar->setPercent((player->getExp() / (double)player->getMaxExp()) * 100.f);
 }
 
 void GameLayer::showGameOver(CCObject* pSender)
