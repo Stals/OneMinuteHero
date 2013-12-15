@@ -1,7 +1,7 @@
 #include "TutorialLayer.h"
 
 
-TutorialLayer::TutorialLayer(TimerSprite* timer):timer(timer)
+TutorialLayer::TutorialLayer(TimerSprite* timer, Keyboard** keyboard):timer(timer), keyboard(keyboard)
 {
 	CCLayer::init();
 	setupBackground();
@@ -27,6 +27,7 @@ bool TutorialLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 	if(this->isVisible()){
 		this->setVisible(false);
 		timer->start();
+		*keyboard = new Keyboard();
 		return true;
 	}
 	return false;

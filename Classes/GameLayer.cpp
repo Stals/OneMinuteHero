@@ -47,6 +47,7 @@ bool GameLayer::init()
     }
     board = NULL;
 	floor = 1;
+	keyboard = NULL;
 
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
@@ -84,7 +85,7 @@ void GameLayer::setupBackground()
 
 void GameLayer::setupKeyboard()
 {
-	keyboard = new Keyboard;
+	
 }
 
 
@@ -155,9 +156,10 @@ void GameLayer::showTutorial()
 	if(!tutorialShown){
 		tutorialShown = true;
 
-		addChild(new TutorialLayer(timer), zTutorial);
+		addChild(new TutorialLayer(timer, &keyboard), zTutorial);
 	}else{
 		timer->start();
+		keyboard = new Keyboard;
 	}
 }
 
