@@ -2,6 +2,7 @@
 #include "GameOverScreen.h"
 #include "TitleScreen.h"
 #include "StringExtension.h"
+#include "TutorialLayer.h"
 
 USING_NS_CC;
 #define HALF_SPRITE_SIZE 15.5f
@@ -61,6 +62,8 @@ bool GameLayer::init()
 
 	setupTimer();
 	createBoard();
+
+	showTutorial();
 
 
 	setTouchEnabled(true);
@@ -144,6 +147,18 @@ void GameLayer::setupTimer()
 	timer->start();
 	this->addChild(timer);	
 }
+
+void GameLayer::showTutorial()
+{
+	static bool tutorialShown = false;
+
+	if(!tutorialShown){
+		tutorialShown = true;
+
+		addChild(new TutorialLayer, zTutorial);
+	}
+}
+
 
 void GameLayer::setSkill(SkillType skillType)
 {

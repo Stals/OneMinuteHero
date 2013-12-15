@@ -45,6 +45,8 @@ private:
 	void setupLevelLabel();
 	void setupTimer();
 
+	void showTutorial();
+
 	void processKeyboardInputs();
 
 	void playerOnStairsCallback(CCObject* pSender);
