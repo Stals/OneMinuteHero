@@ -4,7 +4,7 @@
 #include "Keyboard.h"
 
 #include "Board.h"
-
+#include "ProgressBar.h"
 
 
 class GameLayer : public cocos2d::CCLayer
@@ -25,6 +25,8 @@ private:
 	Board* board;
 	Player* player;
 	SkillType playerSkill;
+	ProgressBar* hpBar;
+	ProgressBar* expBar;
 
 	// implement the "static node()" method manually
     CREATE_FUNC(GameLayer);
@@ -34,6 +36,7 @@ private:
 	void setupPlayer();
 	void createBoard();
 	void setupSkillButton();
+	void setupBars();
 
 	void processKeyboardInputs();
 
@@ -45,4 +48,6 @@ private:
 	void useSkill(CCObject* pSender);
 	void useFireSkill();
 	void useHealSkill();
+
+	
 };

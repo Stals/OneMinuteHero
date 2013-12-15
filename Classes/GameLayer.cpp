@@ -46,6 +46,7 @@ bool GameLayer::init()
 	setupKeyboard();
 	setupBackground();
 	setupPlayer();
+	setupBars();
 	createBoard();
 
 	setTouchEnabled(true);
@@ -96,6 +97,18 @@ void GameLayer::createBoard()
 	this->addChild(board, zBoard);
 	board->addPlayer(player, player->getTileX(), player->getTileY());
 	board->setPlayerOnStairsCallback(CallbackData(this, menu_selector(GameLayer::playerOnStairsCallback)));
+}
+
+void GameLayer::setupBars()
+{
+	this->hpBar = new ProgressBar(CCSprite::create("hpBarEmpty.png"), CCSprite::create("hpBarFull.png"));
+	this->expBar = new ProgressBar(CCSprite::create("expBarEmpty.png"), CCSprite::create("expBarFull.png"));
+
+	hpBar->setPosition(ccp(hpBar->getContentSize().width + 91 +12, 60));
+	expBar->setPosition(ccp(hpBar->getContentSize().width +91+ 12, 30));
+
+	this->addChild(hpBar);
+	this->addChild(expBar);
 }
 
 void GameLayer::setSkill(SkillType skillType)
