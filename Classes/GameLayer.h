@@ -32,6 +32,7 @@ private:
 	ProgressBar* expBar;
 	TimerSprite* timer;
 	CCLabelTTF* levelLabel;
+	CCMenuItemSprite *skill_button;
 
 	// implement the "static node()" method manually
     CREATE_FUNC(GameLayer);
@@ -63,4 +64,7 @@ private:
 	void updatePlayerExp();
 
 	void showGameOver(CCObject* pSender);
+
+	void enableSkill();
+	void disableSkill();
 };

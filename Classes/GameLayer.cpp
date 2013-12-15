@@ -184,7 +184,7 @@ void GameLayer::setupSkillButton()
 
 	CCSprite *skillUnselected = CCSprite::create(filename.c_str());
 	CCSprite *skillSelected = CCSprite::create(filename.c_str());
-	CCMenuItemSprite *skill_button = CCMenuItemSprite::create(skillUnselected, skillSelected, skillUnselected,
+	skill_button = CCMenuItemSprite::create(skillUnselected, skillSelected, skillUnselected,
 		this, menu_selector(GameLayer::useSkill));
 
 	CCMenu* menu = CCMenu::create(skill_button, NULL);
@@ -275,13 +275,29 @@ void GameLayer::setupSkillButton()
 
  void GameLayer::useSkill(CCObject* pSender)
  {
+	 if(!skill_button->isEnabled()) return;
+	
+	int delay = 0;
+
 	 if(playerSkill == SkillType::Fire){
 		 useFireSkill();
+		 delay = player->getFireSkillDelay();
 	 }else if(playerSkill == SkillType::Heal){
 		 useHealSkill();
+		 delay = player->getHealSkillDelay();
 	 }else if(playerSkill == SkillType::Time){
 		useTimeSkill();
+		delay = player->getTimeSkillDelay();
 	 }
+
+
+	 
+	CCSequence* seq = CCSequence::create(
+						CCCallFunc::create( this, callfunc_selector(GameLayer::disableSkill)),
+						CCDelayTime::create(delay),
+						CCCallFunc::create( this, callfunc_selector(GameLayer::enableSkill)),
+						NULL);
+	this->runAction(seq);
  }
 
  void GameLayer::useFireSkill()
@@ -359,3 +375,16 @@ void GameLayer::showGameOver(CCObject* pSender)
 {
 	CCDirector::sharedDirector()->replaceScene(GameOverScreen::scene(player->getScore()));
 }
+
+void GameLayer::enableSkill()
+{
+	skill_button->setEnabled(true);
+	skill_button->setOpacity(255);
+}
+
+void GameLayer::disableSkill()
+{
+	skill_button->setEnabled(false);
+	skill_button->setOpacity(127);
+}
+

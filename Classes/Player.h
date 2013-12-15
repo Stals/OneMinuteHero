@@ -15,6 +15,10 @@ public:
 	int getFireDamage();
 	int getStopTimeSeconds();
 
+	float getTimeSkillDelay();
+	float getHealSkillDelay();
+	float getFireSkillDelay();
+
 	long long getScore();
 
 private:

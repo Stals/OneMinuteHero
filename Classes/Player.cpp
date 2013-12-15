@@ -43,13 +43,29 @@ int Player::getHealAmount()
 
 int Player::getFireDamage()
 {
-	return scaleVar(25);
+	return scaleVar(11);
 }
 
 int Player::getStopTimeSeconds()
 {
-	return scaleVar(10);
+	return scaleVar(5);
 }
+
+float Player::getTimeSkillDelay()
+{
+	return 15;
+}
+
+float Player::getHealSkillDelay()
+{
+	return 10;
+}
+
+float Player::getFireSkillDelay()
+{
+	return 8;
+}
+
 
 void Player::showAddExpLabel(int exp)
 {
