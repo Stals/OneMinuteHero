@@ -23,6 +23,8 @@ public:
 
 	void shceduleRegen();
 
+	void cleanLabels();
+
 private:
 	int exp;
 	int maxExp;

@@ -126,6 +126,7 @@ void GameLayer::createBoard()
 	board->setPlayerOnStairsCallback(CallbackData(this, menu_selector(GameLayer::playerOnStairsCallback)));
 
 	player->shceduleRegen();
+	player->cleanLabels();
 }
 
 void GameLayer::setupBars()

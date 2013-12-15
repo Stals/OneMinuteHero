@@ -113,3 +113,18 @@ void Player::shceduleRegen()
 {
 	schedule(schedule_selector(Player::regen), 2.f);
 }
+
+void Player::cleanLabels()
+{
+	CCArray* sprites = this->getChildren();
+
+	CCObject* proj;
+	CCARRAY_FOREACH(sprites,proj){
+		CCSprite *projectile = static_cast<CCSprite*>(proj);
+		if(projectile->getTag()!= 1337){
+			projectile->removeFromParentAndCleanup(true);
+		}
+	}
+
+
+}

@@ -12,7 +12,7 @@ Creature::Creature(const char* filename, int maxHp, int damage, int level): tile
 	CCSprite* sprite = CCSprite::create(filename);
 	this->setContentSize(sprite->getContentSize());
 	this->setAnchorPoint(ccp(0,0));
-	addChild(sprite);
+	addChild(sprite, 0, 1337);
 
 	//setupHPBar();
 }
