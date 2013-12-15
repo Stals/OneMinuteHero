@@ -8,6 +8,11 @@ Keyboard::~Keyboard(){
 
 }
 
+bool Keyboard::wasAnyKeyPressed() const
+{
+	return s3eKeyboardAnyKey();
+}
+
 bool Keyboard::isKeyDown(InputKey key) const{
 	return (s3eKeyboardGetState((s3eKey)key) & S3E_KEY_STATE_DOWN) == S3E_KEY_STATE_DOWN;
 }

@@ -38,8 +38,11 @@ bool GameOverScreen::init()
 
 	setupBackground();
 
+	keyboard = new Keyboard;
+
 	//setTouchEnabled(true);
 	//this->registerWithTouchDispatcher();
+	this->scheduleUpdate();
 	
 	return true;
 }
@@ -68,6 +71,13 @@ void GameOverScreen::setupLabel()
 
 	label->setPosition(ccp(this->getContentSize().width/2, 422));
 
+}
+
+void GameOverScreen::update(float dt){
+	if(keyboard->wasAnyKeyPressed())
+	{
+		CCDirector::sharedDirector()->replaceScene(TitleScreen::scene());
+	}
 }
 
 bool GameOverScreen::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

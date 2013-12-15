@@ -84,7 +84,7 @@ void GameLayer::update(float delta )
 
 void GameLayer::setupPlayer()
 {
-	player = new Player(10, 4);
+	player = new Player(100, 4);
 	player->retain();
 }
 

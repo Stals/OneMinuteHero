@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Constants.h"
+#include "Keyboard.h"
 
 class GameOverScreen : public CCLayer{
 public:
@@ -16,10 +17,13 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 
-		void setupLabel();
+	void setupLabel();
+
+	void update(float dt);
 
 private:
 	long long score;
+	Keyboard* keyboard;
 
 	CREATE_FUNC(GameOverScreen);
 

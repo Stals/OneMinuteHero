@@ -20,6 +20,8 @@ public:
 	Keyboard();
 	~Keyboard();
 
+	bool wasAnyKeyPressed() const;
+
 	bool isKeyDown(InputKey key) const;
 	bool isKeyUp(InputKey key) const;
 
