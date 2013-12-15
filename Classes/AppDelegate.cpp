@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-
+#include "SimpleAudioEngine.h"
 #include <vector>
 #include <string>
 
@@ -47,10 +47,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // run
     pDirector->runWithScene(pScene);
 
-	/*preloadSounds();
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("background.mp3", true);
+	preloadSounds();
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sound/background.mp3", true);
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.3f);
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.2f);*/
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.2f);
     return true;
 }
 
@@ -67,11 +67,14 @@ void AppDelegate::applicationWillEnterForeground() {
     //CCDirector::sharedDirector()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+     //SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
 
 void AppDelegate::preloadSounds(){
-	/*CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.0f);
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/win.wav");*/
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.0f);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/levelup.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/fire.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/time.wav");
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/heal.wav");
 }
 

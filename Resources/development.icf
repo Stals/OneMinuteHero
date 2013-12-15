@@ -95,7 +95,7 @@ SurfaceRotation                = Type=string, Allowed="Rot0" "Rot90" "Rot180" "R
 SurfaceUnalign                 = Type=bool, Default="true", Value = "true"
 SurfaceUseMultiBuffers         = Type=bool, Default="true", Value = "true"
 SurfaceWidth                   = Type=int, Min=128.000000, Max=4096.000000, Default="320", Value = "480"
-SymbianSoundLatency            = Type=int, Min=20.000000, Max=1400.000000, Default="120", Value = "120"
+SymbianSoundLatency            = Type=int, Min=20.000000, Max=1400.000000, Default="120", Value = "20"
 ThreadEnabled                  = Type=bool, Default="true", Value = "true"
 TimerAccuracy                  = Type=int, Min=0.000000, Max=1000.000000, Default="0", Value = "0"
 TimerHiRes                     = Type=bool, Default="false", Value = "false"

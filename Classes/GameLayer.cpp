@@ -1,5 +1,6 @@
 #include "GameLayer.h"
 #include "GameOverScreen.h"
+#include "TitleScreen.h"
 
 USING_NS_CC;
 #define HALF_SPRITE_SIZE 15.5f
@@ -164,6 +165,11 @@ void GameLayer::setupSkillButton()
 
  void GameLayer::processKeyboardInputs()
  {
+	 if(keyboard->wasKeyPressed(InputKey::Key_ESC)){
+		CCDirector::sharedDirector()->replaceScene(TitleScreen::scene());
+		return;
+	 }
+
 	 if(keyboard->wasKeyPressed(InputKey::Key_Space)){
 		useSkill(this);
 		return;
@@ -273,6 +279,7 @@ void GameLayer::setupSkillButton()
 			}
 		}
 	}
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/fire.wav");
 
  }
 
@@ -280,6 +287,7 @@ void GameLayer::setupSkillButton()
  {
 	 player->addHp(HEAL_SKILL_AMOUNT, true);
 	 updatePlayerHP();
+	 CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/heal.wav");
  }
 
  void GameLayer::useTimeSkill()
@@ -293,6 +301,7 @@ void GameLayer::setupSkillButton()
 								CCBlink::create(0.5f, 2),
 								NULL);
 	timer->runAction(seq);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("sound/time.wav");
  }
 
 void GameLayer::updatePlayerHP()
