@@ -16,6 +16,10 @@ public:
 	// анимация на хп баре + текст
 	void substractHp(int hp, bool animated = true);
 	void addHp(int hp, bool animated = true);
+
+	int getHP();
+	int getMaxHP();
+
 	int getDamage();
 
 	bool isDead();

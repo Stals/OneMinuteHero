@@ -192,7 +192,7 @@ void GameLayer::setupSkillButton()
 		 // show animation of player attacking enemy		 
 		 // TODO можно пройтись по всем монстрам вокруг игрока а не только тот которого ты трогаеш
 		 player->substractHp(monster->getDamage());
-
+		 updatePlayerHP();
 		if(player->isDead()){
 			// show dead screen
 		}
@@ -259,4 +259,16 @@ void GameLayer::setupSkillButton()
  void GameLayer::useHealSkill()
  {
 	 player->addHp(HEAL_SKILL_AMOUNT, true);
+	 updatePlayerHP();
  }
+
+
+void GameLayer::updatePlayerHP()
+{
+	hpBar->setPercent((player->getHP() / (double)player->getMaxHP()) * 100.f);
+}
+
+void GameLayer::updatePlayerExp()
+{
+}
+

@@ -88,6 +88,17 @@ void Creature::addHp(int hp, bool animated)
 
 }
 
+int Creature::getHP()
+{
+	return hp;
+}
+
+int Creature::getMaxHP()
+{
+	return maxHp;
+}
+
+
 int Creature::getDamage()
 {
 	return damage;

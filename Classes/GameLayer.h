@@ -49,5 +49,6 @@ private:
 	void useFireSkill();
 	void useHealSkill();
 
-	
+	void updatePlayerHP();
+	void updatePlayerExp();
 };
