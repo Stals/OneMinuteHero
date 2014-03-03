@@ -3,6 +3,7 @@ Ludum Dare 28
 
 Theme: You get only one
 
-Description to be added...
+Ludum Dare link:
+http://www.ludumdare.com/compo/ludum-dare-28/comment-page-2/?action=preview&uid=25969
 
 All sound effects were made with SFXR, and music with cgMusic.
